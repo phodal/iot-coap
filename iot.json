@@ -1,0 +1,4 @@
+{
+	"db_name": "iot.db",
+	"db_table": "id integer primary key, value text, sensors1 float, sensors2 float"
+}
