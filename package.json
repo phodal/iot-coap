@@ -1,0 +1,5 @@
+{
+	"dependencies":{
+		"coap": "0.7.2"
+	}
+}
