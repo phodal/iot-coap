@@ -22,17 +22,23 @@ function start_server() {
     });
 
     db.close();
-    
+
     var coap = require('coap');
-    var server = coap.createServer();
+    var server = coap.createServer({});
 
     server.on('request', function(req, res) {
-        if (req.headers['GET'] !== 0){
-            console.log(req);
+        if (req.headers['GET'] !== 0) {
             res.end('GET ' + req.url.split('/')[1] + '\n');
+            res.code = '4.06';
         } else {
             res.end('Hello ' + req.url.split('/')[1] + '\n');
-        }
+        };
+
+        res.setOption('Content-Format', 'application/json');
+
+        res.end(JSON.stringify({
+            hello: "world"
+        }));
     });
 
     server.listen(function() {
