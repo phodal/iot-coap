@@ -28,17 +28,15 @@ function start_server() {
 
     server.on('request', function(req, res) {
         if (req.headers['GET'] !== 0) {
-            res.end('GET ' + req.url.split('/')[1] + '\n');
+            res.setOption('Content-Format', 'application/json');
+
+            res.end(JSON.stringify({
+                hello: req.url.split('/')[1]
+            }));
             res.code = '4.06';
         } else {
             res.end('Hello ' + req.url.split('/')[1] + '\n');
-        };
-
-        res.setOption('Content-Format', 'application/json');
-
-        res.end(JSON.stringify({
-            hello: "world"
-        }));
+        }
     });
 
     server.listen(function() {
