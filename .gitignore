@@ -1,3 +1,4 @@
 node_modules/*
 .idea/*
 newrelic.js
+server/node_modules/*
