@@ -1,4 +1,11 @@
 {
+  "name": "iot-coap",
+  "version": "0.0.1",
+  "description": "Mini IoT CoAP Version",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gmszone/iot-coap.git"
+  },
   "dependencies": {
     "coap": "0.8.0",
     "bl": "~0.9.0",
@@ -6,5 +13,17 @@
     "coap-packet": "^0.1.12",
     "sqlite3": "2.2.7",
     "newrelic": ""
-  }
+  },
+  "keywords": [
+    "coap",
+    "iot",
+    "internet of things"
+  ],
+  "author": [
+    {
+      "name": "Fengda HUANG",
+      "url": "https://www.phodal.com/"
+    }
+  ],
+  "license": "MIT"
 }
