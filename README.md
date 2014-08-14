@@ -21,6 +21,9 @@
 
      node server.js
 
+###Test
+
+    coap coap://localhost
 
 ##文档
 
