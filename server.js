@@ -14,7 +14,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 function start_server() {
 
     var db = new sqlite3.Database(config["db_name"]);
-    var create_table = 'create table basic (' + config["db_table"] + ');';
+    var create_table = 'create table if not exists basic (' + config["db_table"] + ');';
     console.log(create_table);
 
     db.serialize(function() {
@@ -27,10 +27,16 @@ function start_server() {
     var server = coap.createServer();
 
     server.on('request', function(req, res) {
-        res.end('Hello ' + req.url.split('/')[1] + '\n');
+        if (req.headers['GET'] !== 0){
+            console.log(req);
+            res.end('GET ' + req.url.split('/')[1] + '\n');
+        } else {
+            res.end('Hello ' + req.url.split('/')[1] + '\n');
+        }
     });
 
     server.listen(function() {
         console.log('server started');
     });
+
 }
