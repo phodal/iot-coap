@@ -1,6 +1,7 @@
 var sqlite3 = require('sqlite3').verbose();
 var fs = require("fs");
 var file = "./iot.json";
+var _ = require("underscore");
 
 fs.readFile(file, 'utf8', function(err, data) {
     if (err) {
@@ -19,6 +20,9 @@ function start_server() {
 
     db.serialize(function() {
         db.run(create_table);
+        _.each(config["init_table"], function(insert_data){
+            db.run(insert_data);
+        });
     });
 
     db.close();

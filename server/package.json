@@ -5,6 +5,7 @@
     "coap-cli": "0.3.0",
     "coap-packet": "^0.1.12",
     "sqlite3": "2.2.7",
+    "underscore": "1.6.0",
     "newrelic": ""
   }
 }
