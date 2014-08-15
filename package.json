@@ -25,5 +25,18 @@
       "url": "https://www.phodal.com/"
     }
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pre-commit": "0.0.9",
+    "chai": "~1.9.1",
+    "mocha": "~1.21.4",
+    "timekeeper": "0.0.4",
+    "sinon": "~1.7.3"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --bail --reporter spec 2>&1"
+  }
 }
