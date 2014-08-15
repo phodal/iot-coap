@@ -12,17 +12,13 @@ fs.readFile(file, 'utf8', function(err, data) {
     start_server();
 });
 
-function parse_url(url) {
+function parse_url(url ,callback) {
     var db = new sqlite3.Database(config["db_name"]);
-    var result = function(callback) {
-        db.all("SELECT * FROM basic;", function(err, rows) {
-            callback(null, JSON.stringify(rows));
-            return;
-        });
-    };
-    console.log(result);
-    db.close();
-    return JSON.stringify({});
+
+    var result = [];
+    db.all("SELECT * FROM basic;", function(err, rows) {
+        callback(JSON.stringify(rows));
+    })
 }
 
 function start_server() {
@@ -47,11 +43,13 @@ function start_server() {
         if (req.headers['GET'] !== 0) {
             res.setOption('Content-Format', 'application/json');
 
-            res.end(parse_url(req.url));
+            parse_url(req.url, function(result){
+                res.end(result);
+            });
 
             res.code = '4.06';
         } else {
-            res.end('Hello ' + req.url.split('/')[1] + '\n');
+            res.end(JSON.stringify({error:"sorry"}));
         }
     });
 
