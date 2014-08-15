@@ -41,3 +41,18 @@
 [iot]: https://github.com/gmszone/iot
 [basic]: http://www.phodal.com/blog/use-constrained-application-protocol-in-internet-of-things/
 [hello]: http://www.phodal.com/blog/use-node-coap-create-a-coap-server/
+
+####IOT-MQTT#####
+
+1.安装依赖库
+
+npm install mqtt
+npm install mosca bunyan -g
+
+2.启动mosca
+
+mosca -v | bunyan
+
+3.测试mqtt-client
+
+node mqtt-client.js
