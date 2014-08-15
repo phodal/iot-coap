@@ -12,14 +12,15 @@ fs.readFile(file, 'utf8', function(err, data) {
     start_server();
 });
 
-function parse_url(url ,callback) {
+function parse_url(url, callback) {
     var db = new sqlite3.Database(config["db_name"]);
 
     var result = [];
     console.log("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2]);
     db.all("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2], function(err, rows) {
+        db.close();
         callback(JSON.stringify(rows));
-    })
+    });
 }
 
 function start_server() {
@@ -41,17 +42,23 @@ function start_server() {
     var server = coap.createServer({});
 
     server.on('request', function(req, res) {
+        console.log(req.headers);
         if (req.headers['GET'] !== 0) {
-            
-            res.setOption('Content-Format', 'application/json');
-
-            parse_url(req.url, function(result){
-                res.end(result);
+            res.setOption('Accept', 'application/json');
+            parse_url(req.url, function(result) {
+                if( result.length == 2){
+                    res.code = '4.04';
+                    return res.end(JSON.stringify({
+                        error: "Not Found"
+                    }));
+                }
+                res.code = '2.05';
+                return res.end(result);
             });
-
-            res.code = '4.06';
-        } else {
-            res.end(JSON.stringify({error:"sorry"}));
+        }else {
+            res.end(JSON.stringify({
+                error: "sorry"
+            }));
         }
     });
 

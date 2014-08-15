@@ -3,6 +3,7 @@ var requestURI = 'coap://localhost/';
 var url = require('url').parse(requestURI + 'id/1/');
 console.log("Request URL: " + url.href);
 var req = coap.request(url);
+req.setHeader("Accept", "application/json");
 var bl = require('bl');
 
 req.on('response', function(res) {
