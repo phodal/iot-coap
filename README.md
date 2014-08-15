@@ -46,13 +46,13 @@
 
 1.安装依赖库
 
-npm install mqtt
-npm install mosca bunyan -g
+    npm install mqtt
+    npm install mosca bunyan -g
 
 2.启动mosca
 
-mosca -v | bunyan
+    mosca -v | bunyan
 
 3.测试mqtt-client
 
-node mqtt-client.js
+    node mqtt-client.js
