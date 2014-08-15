@@ -16,7 +16,8 @@ function parse_url(url ,callback) {
     var db = new sqlite3.Database(config["db_name"]);
 
     var result = [];
-    db.all("SELECT * FROM basic;", function(err, rows) {
+    console.log("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2]);
+    db.all("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2], function(err, rows) {
         callback(JSON.stringify(rows));
     })
 }
@@ -41,6 +42,7 @@ function start_server() {
 
     server.on('request', function(req, res) {
         if (req.headers['GET'] !== 0) {
+            
             res.setOption('Content-Format', 'application/json');
 
             parse_url(req.url, function(result){
