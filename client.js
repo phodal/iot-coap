@@ -1,7 +1,7 @@
 var coap = require('coap');
 var requestURI = 'coap://localhost/';
 var name = 'World';
-var url = require('url').parse(requestURI + name);
+var url = require('url').parse(requestURI + 'id/' + name);
 var req = coap.request(url);
 var bl = require('bl');
 

@@ -12,6 +12,19 @@ fs.readFile(file, 'utf8', function(err, data) {
     start_server();
 });
 
+function parse_url(url) {
+    var db = new sqlite3.Database(config["db_name"]);
+    var result = function(callback) {
+        db.all("SELECT * FROM basic;", function(err, rows) {
+            callback(null, JSON.stringify(rows));
+            return;
+        });
+    };
+    console.log(result);
+    db.close();
+    return JSON.stringify({});
+}
+
 function start_server() {
 
     var db = new sqlite3.Database(config["db_name"]);
@@ -20,7 +33,7 @@ function start_server() {
 
     db.serialize(function() {
         db.run(create_table);
-        _.each(config["init_table"], function(insert_data){
+        _.each(config["init_table"], function(insert_data) {
             db.run(insert_data);
         });
     });
@@ -34,9 +47,8 @@ function start_server() {
         if (req.headers['GET'] !== 0) {
             res.setOption('Content-Format', 'application/json');
 
-            res.end(JSON.stringify({
-                hello: req.url.split('/')[1]
-            }));
+            res.end(parse_url(req.url));
+
             res.code = '4.06';
         } else {
             res.end('Hello ' + req.url.split('/')[1] + '\n');
