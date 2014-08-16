@@ -3,3 +3,4 @@
 --growl
 --check-leaks
 --colors
+--require test/common
