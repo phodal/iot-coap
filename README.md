@@ -55,4 +55,5 @@
 
 3.测试mqtt-client
 
-    node mqtt-client.js
+    node mqtt-subscribe-client.js
+    node mqtt-publish-client.js
