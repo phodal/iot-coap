@@ -13,6 +13,7 @@
     "sqlite3": "2.2.7",
     "knex": "0.6.22",
     "underscore": "1.6.0",
+    "jstoxml": "0.2.2",
     "newrelic": ""
   },
   "keywords": [

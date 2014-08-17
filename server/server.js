@@ -8,9 +8,16 @@ DBHelper.initDB();
 server.on('request', function(req, res) {
     console.log(req.method);
     if (req.method == 'GET') {
-        DBHelper.urlQueryData(req.url, function(result) {
-            QueryData.returnJSON(result, res);
-        });
+        console.log(req.headers['Accept']);
+        if(req.headers['Accept'] == 'application/json') {
+            DBHelper.urlQueryData(req.url, function (result) {
+                QueryData.returnJSON(result, res);
+            });
+        }else if (req.headers['Accept'] == 'application/xml'){
+            DBHelper.urlQueryData(req.url, function (result) {
+                QueryData.returnXML(result, res);
+            });
+        }
     } else if (req.method == 'POST' || req.method == 'PUT' || req.method == 'DELETE') {
         res.end(JSON.stringify({
             message: req.method +" is no support now"
