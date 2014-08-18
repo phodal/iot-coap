@@ -1,22 +1,16 @@
-var DBHelper = require('./db_helper.js');
 var coap = require('coap');
 var server = coap.createServer({});
-var QueryData = require('./QueryData.js');
-
-DBHelper.initDB();
+var qh = require('./query_helper.js');
 
 server.on('request', function(req, res) {
     console.log(req.method);
     if (req.method == 'GET') {
         console.log(req.headers['Accept']);
-        if(req.headers['Accept'] == 'application/json') {
-            DBHelper.urlQueryData(req.url, function (result) {
-                QueryData.returnJSON(result, res);
-            });
-        }else if (req.headers['Accept'] == 'application/xml'){
-            DBHelper.urlQueryData(req.url, function (result) {
-                QueryData.returnXML(result, res);
-            });
+        switch(req.headers['Accept']){
+            case "application/json": qh.returnJSON(req, res);
+                break;
+            case "application/xml": qh.returnXML(req, res);
+                break;
         }
     } else if (req.method == 'POST' || req.method == 'PUT' || req.method == 'DELETE') {
         res.end(JSON.stringify({
