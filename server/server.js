@@ -1,25 +1,17 @@
 var coap = require('coap');
 var server = coap.createServer({});
-var qh = require('./query_helper.js');
+var request_handler = require('./request_handler.js');
 
 server.on('request', function(req, res) {
-    console.log(req.method);
-    if (req.method == 'GET') {
-        console.log(req.headers['Accept']);
-        switch(req.headers['Accept']){
-            case "application/json": qh.returnJSON(req, res);
-                break;
-            case "application/xml": qh.returnXML(req, res);
-                break;
-        }
-    } else if (req.method == 'POST' || req.method == 'PUT' || req.method == 'DELETE') {
-        res.end(JSON.stringify({
-            message: req.method +" is no support now"
-        }));
-    }else {
-        res.end(JSON.stringify({
-            error: "sorry"
-        }));
+    switch(req.method){
+        case "GET": request_handler.getRequest(req, res);
+            break;
+        case "POST":
+        case "PUT":
+        case "DELETE": request_handler.methodNotSupport(res, req);
+            break;
+        default: request_handler.errorRequest(res);
+            break;
     }
 });
 
