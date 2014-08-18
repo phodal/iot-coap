@@ -1,7 +1,7 @@
 /**
  * Created by quanpower on 14-8-15.
  */
-var mosca = require('mosca')
+var mosca = require('mosca');
 
 var ascoltatore = {
     //using ascoltatore

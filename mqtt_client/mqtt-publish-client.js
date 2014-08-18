@@ -7,6 +7,9 @@ var sleep = require('sleep');
 
 client = mqtt.createClient(1883, 'localhost');
 
+///var mqtt = require('mqtt')
+//    , client = mqtt.createClient(); //is also usable too
+
 client.publish('presence', 'Hello,i am quanpower!');
 sleep.sleep(1);
 client.publish('presence', 'Current time is:' + new Date());
