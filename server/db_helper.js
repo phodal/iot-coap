@@ -46,7 +46,7 @@ function blockToJson(block) {
     }
     return result;
 }
-DBHelper.updateData = function (block, callback) {
+DBHelper.syncData = function (block, callback) {
     var db = new sqlite3.Database(config["db_name"]);
     block = blockToJson(block);
     var string = block['id'] + ",'" + block['value'] + "'," + block['sensors1'] + "," + block["sensors2"];

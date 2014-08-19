@@ -6,10 +6,8 @@ function request_helper(){
 
 }
 
-request_helper.postHandler = function (req, res) {
-
+request_helper.syncHandler = function (req, res) {
     var block_save = [];
-
     _.each(req.options, function(e){
         if (e["name"] === "Block2") {
             block_save.push(_.values(e).toString().split(',')[1]);
@@ -18,7 +16,7 @@ request_helper.postHandler = function (req, res) {
 
     switch (req.headers['Accept']) {
         case "application/json":
-            qh.postJSON(req, res, block_save);
+            qh.syncJSON(req, res, block_save);
             break;
         case "application/xml":
             qh.postXML(req, res, block_save);
