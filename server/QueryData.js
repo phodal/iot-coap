@@ -3,6 +3,10 @@ var jstoxml = require('jstoxml');
 function QueryData() {
 
 }
+QueryData.postJsonToDB = function(block, res){
+    res.code = '2.05';
+    res.end({});
+};
 
 QueryData.returnJSON = function(result, res) {
     if (result.length == 2) {
