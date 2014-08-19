@@ -1,4 +1,4 @@
-var QueryData = require('../server/QueryData.js');
+var resultReturn = require('../server/retunResultAndCode.js');
 
 describe('query data status code test', function() {
 
@@ -7,7 +7,7 @@ describe('query data status code test', function() {
 
     it('should return 4.04 when result empty', function(done) {
         var request = "[]";
-        QueryData.returnJSON(request, res);
+        resultReturn.jsonAndCode(request, res);
         var result = res.code;
         expect(result).to.eql("4.04");
         done();
@@ -15,7 +15,7 @@ describe('query data status code test', function() {
 
     it('should return 2.05 when result empty', function(done) {
         var request = "[{hello:'world'}]";
-        QueryData.returnJSON(request, res);
+        resultReturn.jsonAndCode(request, res);
         var result = res.code;
         expect(result).to.eql("2.05");
         done();
