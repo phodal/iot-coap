@@ -10,7 +10,7 @@
 
 这是一个开源的最小物联网系统的CoAP版，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
 
-##依赖库
+##主要依赖库
 
  - RESTify
  - Node-CoAP
@@ -25,9 +25,19 @@
 
      npm install
 
+###测试脚本
+
+Get测试
+
+    node examples/get.js
+
+Post测试
+  
+    node examples/posts.js
+
 ###运行
 
-     node server.js
+     node server/server.js
 
 ###Test
 
