@@ -10,7 +10,8 @@ server.on('request', function(req, res) {
         case "PUT":
             request_handler.syncHandler(req, res);
             break;
-        case "DELETE": request_handler.methodNotSupport(res, req);
+        case "DELETE":
+            request_handler.deleteHandler(req, res);
             break;
         default: request_handler.errorRequest(res);
             break;

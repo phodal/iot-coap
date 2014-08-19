@@ -14,6 +14,12 @@ query_helper.syncJSON = function(req, res, block) {
     });
 };
 
+query_helper.deleteData = function(req, res){
+    DBHelper.deleteData(req.url, function (result) {
+        QueryData.returnDelete(result, res);
+    });
+};
+
 query_helper.postXML = function(req, res) {
 
 };
