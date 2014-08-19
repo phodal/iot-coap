@@ -1,4 +1,4 @@
-var qh = require('./query_helper.js');
+var qh              = require('./query_helper.js');
 var _               = require("underscore");
 var bl              = require('bl');
 
@@ -6,19 +6,31 @@ function request_helper(){
 
 }
 
-
 request_helper.postHandler = function (req, res) {
+    var result = {};
+    var block_save = [];
+
     _.each(req.options, function(e){
-        if(e["name"] === "Block2"){
-            bl(function (err ,e){
-                console.log(e.toString());
-            });
-            console.log(e.value);
+        if (e["name"] === "Block2") {
+            block = _.values(e).toString();
+            block_save.push(block.split(',')[1]);
         }
     });
-    res.end(JSON.stringify({
-        error: "we try to fix it"
-    }));
+
+    if(!_.isEmpty(block_save)){
+        var db_index = ["id", "value", "sensors1", "sensors2"];
+        var str = "" ;
+        str += "{";
+        _.each(block_save, function(array, index){
+            str += '"' + db_index[index] + '"' +':"' + array + '",' ;
+        });
+        str = str.substring(0, str.length - 1);
+        str += "}";
+        result = JSON.parse(str);
+    }
+
+    res.code = '2.05';
+    res.end(JSON.stringify(result));
 };
 
 request_helper.getHandler = function(req, res) {
