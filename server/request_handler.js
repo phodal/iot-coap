@@ -7,30 +7,23 @@ function request_helper(){
 }
 
 request_helper.postHandler = function (req, res) {
-    var result = {};
+
     var block_save = [];
 
     _.each(req.options, function(e){
         if (e["name"] === "Block2") {
-            block = _.values(e).toString();
-            block_save.push(block.split(',')[1]);
+            block_save.push(_.values(e).toString().split(',')[1]);
         }
     });
 
-    if(!_.isEmpty(block_save)){
-        var db_index = ["id", "value", "sensors1", "sensors2"];
-        var str = "" ;
-        str += "{";
-        _.each(block_save, function(array, index){
-            str += '"' + db_index[index] + '"' +':"' + array + '",' ;
-        });
-        str = str.substring(0, str.length - 1);
-        str += "}";
-        result = JSON.parse(str);
+    switch (req.headers['Accept']) {
+        case "application/json":
+            qh.postJSON(req, res, block_save);
+            break;
+        case "application/xml":
+            qh.postXML(req, res, block_save);
+            break;
     }
-
-    res.code = '2.05';
-    res.end(JSON.stringify(result));
 };
 
 request_helper.getHandler = function(req, res) {

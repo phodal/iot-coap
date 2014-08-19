@@ -30,8 +30,35 @@ DBHelper.initDB = function(){
     db.close();
 };
 
+function blockToJson(block) {
+    var result = {};
+
+    if (!_.isEmpty(block)) {
+        var db_index = ["id", "value", "sensors1", "sensors2"];
+        var str = "";
+        str += "{";
+        _.each(block, function (array, index) {
+            str += '"' + db_index[index] + '"' + ':"' + array + '",';
+        });
+        str = str.substring(0, str.length - 1);
+        str += "}";
+        result = JSON.parse(str);
+    }
+    return result;
+}
+DBHelper.updateData = function (block, callback) {
+    var db = new sqlite3.Database(config["db_name"]);
+    block = blockToJson(block);
+    var string = block['id'] + ",'" + block['value'] + "'," + block['sensors1'] + "," + block["sensors2"];
+    var insert_db_string = "insert or replace into basic (id,value,sensors1,sensors2) VALUES (" + string + ");";
+    db.all(insert_db_string, function(err){
+        db.close();
+    });
+    callback();
+};
+
 DBHelper.urlQueryData = function (url, callback) {
-    var db = new sqlite3.Database("iot.db");
+    var db = new sqlite3.Database(config["db_name"]);
 
     var result = [];
     console.log("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2]);
