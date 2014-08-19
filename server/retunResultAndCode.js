@@ -1,21 +1,21 @@
 var jstoxml = require('jstoxml');
 
-function QueryData() {
+function resultReturn() {
 
 }
-QueryData.saveJsonToDB = function(block, res){
+resultReturn.saveAndCode = function(block, res){
     res.code = '2.05';
     res.end({});
 };
 
-QueryData.returnDelete = function(block, res){
+resultReturn.deleteAndCode = function(block, res){
     res.code = '2.05';
     res.end(JSON.stringify({
         success: "delete"
     }));
 };
 
-QueryData.returnJSON = function(result, res) {
+resultReturn.jsonAndCode = function(result, res) {
     if (result.length == 2) {
         res.code = '4.04';
         res.end(JSON.stringify({
@@ -28,7 +28,7 @@ QueryData.returnJSON = function(result, res) {
 };
 
 
-QueryData.returnXML = function (result, res) {
+resultReturn.XMLAndCode = function (result, res) {
     if (result.length == 2) {
         res.code = '4.04';
         res.end(jstoxml.toXML({
@@ -40,4 +40,4 @@ QueryData.returnXML = function (result, res) {
     }
 };
 
-module.exports = QueryData;
+module.exports = resultReturn;
