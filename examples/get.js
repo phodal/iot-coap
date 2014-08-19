@@ -1,10 +1,10 @@
-var coap = require('coap');
-var requestURI = 'coap://localhost/';
-var url = require('url').parse(requestURI + 'id/1/');
-console.log("Request URL: " + url.href);
-var req = coap.request(url);
-var bl = require('bl');
+const coap       = require('coap')
+     ,requestURI = 'coap://localhost/'
+     ,url        = require('url').parse(requestURI + 'id/1/')
+     ,req        = coap.request(url)
+     ,bl         = require('bl');
 
+req.setOption('Block2',  new Buffer([0x2]));
 req.setHeader("Accept", "application/json");
 req.on('response', function(res) {
 	res.pipe(bl(function(err, data) {
@@ -13,7 +13,6 @@ req.on('response', function(res) {
 	}));
 
 });
-
 req.end();
 
 var req2 = coap.request(url);
