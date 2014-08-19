@@ -8,9 +8,9 @@ function query_helper() {
 
 }
 
-query_helper.postJSON = function(req, res, block) {
-    DBHelper.updateData(block, function (result) {
-        QueryData.postJsonToDB(block, res);
+query_helper.syncJSON = function(req, res, block) {
+    DBHelper.syncData(block, function (result) {
+        QueryData.saveJsonToDB(block, res);
     });
 };
 

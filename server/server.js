@@ -7,7 +7,8 @@ server.on('request', function(req, res) {
         case "GET": request_handler.getHandler(req, res);
             break;
         case "POST":
-        case "PUT": request_handler.postHandler(req, res);
+        case "PUT":
+            request_handler.syncHandler(req, res);
             break;
         case "DELETE": request_handler.methodNotSupport(res, req);
             break;

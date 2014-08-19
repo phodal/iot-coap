@@ -3,7 +3,7 @@ var jstoxml = require('jstoxml');
 function QueryData() {
 
 }
-QueryData.postJsonToDB = function(block, res){
+QueryData.saveJsonToDB = function(block, res){
     res.code = '2.05';
     res.end({});
 };
