@@ -1,5 +1,7 @@
 var coap = require('coap');
 var request = coap.request;
+const dgram    = require('dgram')
+    , parse    = require('coap-packet').parse;
 
 var req = request({
     hostname: 'localhost',
@@ -8,6 +10,8 @@ var req = request({
     method: 'POST'
 });
 
+req.setOption('Block3',  new Buffer(0x55));
+req.setOption('Block2',  new Buffer('abcd'));
 req.setHeader("Accept", "application/json");
 var bl = require('bl');
 
