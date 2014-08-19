@@ -46,6 +46,7 @@ function blockToJson(block) {
     }
     return result;
 }
+
 DBHelper.syncData = function (block, callback) {
     var db = new sqlite3.Database(config["db_name"]);
     block = blockToJson(block);
@@ -57,10 +58,22 @@ DBHelper.syncData = function (block, callback) {
     callback();
 };
 
+
+DBHelper.deleteData = function (url, callback) {
+    var db = new sqlite3.Database(config["db_name"]);
+
+    console.log("DELETE * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2]);
+    var insert_db_string = "DELETE FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2] ;
+    console.log(insert_db_string);
+    db.all(insert_db_string, function(err){
+        db.close();
+    });
+    callback();
+};
+
 DBHelper.urlQueryData = function (url, callback) {
     var db = new sqlite3.Database(config["db_name"]);
 
-    var result = [];
     console.log("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2]);
     db.all("SELECT * FROM basic where " + url.split('/')[1] + "=" + url.split('/')[2], function(err, rows) {
         db.close();

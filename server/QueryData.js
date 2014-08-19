@@ -8,6 +8,13 @@ QueryData.saveJsonToDB = function(block, res){
     res.end({});
 };
 
+QueryData.returnDelete = function(block, res){
+    res.code = '2.05';
+    res.end(JSON.stringify({
+        success: "delete"
+    }));
+};
+
 QueryData.returnJSON = function(result, res) {
     if (result.length == 2) {
         res.code = '4.04';
