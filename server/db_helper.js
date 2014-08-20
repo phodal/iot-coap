@@ -36,27 +36,30 @@ function blockToJson(block) {
     return result;
 }
 
-DBHelper.syncData = function (block, callback) {
-    var db = new sqlite3.Database(config["db_name"]);
-    block = blockToJson(block);
+function generate_key(block) {
     var str = "";
     var all_key = "";
-    _.each(config["key"], function(key){
+    _.each(config["key"], function (key) {
         str += key + ",";
         all_key += key
     });
     str = str.substring(0, str.length - 1);
-    var string = block['id'] + ",'" + block['value'] + "'," + block['sensors1'] + "," + block["sensors2"];
-//    var w = "";
-//    _.each(block, function(value, index){
-//        console.log(block[index]);
-//        w += value + ",";
-//    });
-//    console.log(w);
-//    var string = w.substring(0, w.length - 1);
+    var w = "";
+    _.each(block, function (value, index) {
+        w += value + ",";
+    });
+    return {str: str, w: w};
+}
+
+DBHelper.syncData = function (block, callback) {
+    var db = new sqlite3.Database(config["db_name"]);
+    var __ret = generate_key(block);
+    var str = __ret.str;
+    var w = __ret.w;
+    var string = w.substring(0, w.length - 1);
     var insert_db_string = "insert or replace into " + config["table_name"] + " (" + str + ") VALUES (" + string + ");";
     console.log(insert_db_string);
-    db.all(insert_db_string, function(err){
+    db.all(insert_db_string, function (err) {
         db.close();
     });
     callback();
