@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
@@ -11,8 +11,8 @@
     "bl": "~0.9.0",
     "coap-cli": "0.3.0",
     "sqlite3": "2.2.7",
-    "knex": "0.6.22",
     "underscore": "1.6.0",
+    "jstoxml": "0.2.2",
     "newrelic": ""
   },
   "keywords": [
