@@ -35,9 +35,30 @@ Post测试
   
     node examples/posts.js
 
-###运行
 
-     node server/server.js
+##运行 方式1
+
+    npm install iot-coap
+
+新建一个index.js
+
+    var iotcoap         = require('iot-coap');
+
+    iotcoap.run();    
+
+接着运行
+
+    node index.js
+
+##运行 方式2
+
+注释掉index.js中的
+
+    iotcoap.run()
+
+运行
+
+    node index.js
 
 ###Test
 
