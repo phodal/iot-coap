@@ -1,11 +1,16 @@
 
 [![Build Status](https://api.travis-ci.org/gmszone/iot-coap.png)](https://travis-ci.org/gmszone/iot-coap)
 
+
+[![NPM](https://nodei.co/npm/iot-coap.png)](https://nodei.co/npm/iot-coap/)
+
+[![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
+
 #物联网系统 CoAP版
 
 这是一个开源的最小物联网系统的CoAP版，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
 
-##依赖库
+##主要依赖库
 
  - RESTify
  - Node-CoAP
@@ -20,9 +25,40 @@
 
      npm install
 
-###运行
+###测试脚本
 
-     node server.js
+Get测试
+
+    node examples/get.js
+
+Post测试
+  
+    node examples/posts.js
+
+
+##运行 方式1
+
+    npm install iot-coap
+
+新建一个index.js
+
+    var iotcoap         = require('iot-coap');
+
+    iotcoap.run();    
+
+接着运行
+
+    node index.js
+
+##运行 方式2
+
+注释掉index.js中的
+
+    iotcoap.run()
+
+运行
+
+    node index.js
 
 ###Test
 
@@ -42,9 +78,11 @@
 [basic]: http://www.phodal.com/blog/use-constrained-application-protocol-in-internet-of-things/
 [hello]: http://www.phodal.com/blog/use-node-coap-create-a-coap-server/
 
+
 ####IOT-MQTT#####
 
 1.安装依赖库
+
 
     npm install mqtt
     npm install mosca bunyan -g
@@ -57,3 +95,4 @@
 
     node mqtt-subscribe-client.js
     node mqtt-publish-client.js
+
