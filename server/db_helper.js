@@ -1,17 +1,7 @@
-var sqlite3 = require('sqlite3').verbose();
-var fs = require("fs");
-var file = "./iot.json";
-var _ = require("underscore");
-
-config = {
-    "db_name": "iot.db",
-    "db_table": "id integer primary key, value text, sensors1 float, sensors2 float",
-    "init_table":[
-        "insert or replace into basic (id,value,sensors1,sensors2) VALUES (1, 'is id 1', 19, 20);",
-        "insert or replace into basic (id,value,sensors1,sensors2) VALUES (2, 'is id 2', 20, 21);"
-    ],
-    "query_table":"select * from basic;"
-};
+const sqlite3 = require('sqlite3').verbose()
+      ,fs     = require("fs")
+      ,_      = require("underscore")
+      ,config = require("../index").config;
 
 function DBHelper(){
 

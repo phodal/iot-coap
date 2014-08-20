@@ -1,4 +1,4 @@
-var jstoxml = require('jstoxml');
+const jstoxml = require('jstoxml');
 
 function resultReturn() {
 

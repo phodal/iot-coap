@@ -1,5 +1,5 @@
-var DBHelper = require('./db_helper.js');
-var returnResult = require('./retunResultAndCode.js');
+const DBHelper      = require('./db_helper.js')
+      ,returnResult = require('./retunResultAndCode.js');
 
 DBHelper.initDB();
 
