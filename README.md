@@ -13,7 +13,7 @@
 ##主要依赖库
 
  - RESTify
- - Node-CoAP
+ - [Node-CoAP](https://github.com/mcollina/node-coap)
  - Node Sqlite3
 
 ##install
@@ -89,6 +89,12 @@ Post测试
 
 [物联网系统与CoAP之Hello,World][hello]
 
+[CoAP与物联网系统之返回JSON][returnjson]
+
+[构建基于CoAP SQLite Nodejs的物联网之查询数据][querydb]
+
+[构建基于CoAP SQLite Nodejs的物联网之数据库][db]
+
 ## Liscense
 
 © 2014 [Phodal Huang](http://www.phodal.com). This code is distributed under the MIT license.
@@ -96,3 +102,6 @@ Post测试
 [iot]: https://github.com/gmszone/iot
 [basic]: http://www.phodal.com/blog/use-constrained-application-protocol-in-internet-of-things/
 [hello]: http://www.phodal.com/blog/use-node-coap-create-a-coap-server/
+[returnjson]: http://www.phodal.com/blog/use-coap-build-internet-of-things-return-json/
+[querydb]: http://www.phodal.com/blog/use-node-coap-sqlite-create-a-coap-server-get-response/
+[db]: http://www.phodal.com/blog/use-coap-nodejs-sqlite-build-iot/
