@@ -1,6 +1,6 @@
-var qh              = require('./query_helper.js');
-var _               = require("underscore");
-var bl              = require('bl');
+const qh   = require('./query_helper.js')
+      ,_   = require("underscore")
+      ,bl  = require('bl');
 
 function request_helper(){
 

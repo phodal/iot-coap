@@ -46,6 +46,18 @@ Post测试
 
     iotcoap.run();    
 
+创建iot.json
+
+    {
+        "db_name": "iot.db",
+        "db_table": "id integer primary key, value text, sensors1 float, sensors2 float",
+        "init_table":[
+            "insert or replace into basic (id,value,sensors1,sensors2) VALUES (1, 'is id 1', 19, 20);",
+            "insert or replace into basic (id,value,sensors1,sensors2) VALUES (2, 'is id 2', 20, 21);"
+        ],
+        "query_table":"select * from basic;"
+    }    
+
 接着运行
 
     node index.js
