@@ -42,11 +42,10 @@ Post测试
 
 新建一个index.js
 
-    const iotcoap         = require('iot-coap')
-          ,iotreset       = require('iot-coap')
+    const iotcoap         = require('iot-coap');
 
     iotcoap.run();
-    iotrest.run();  //运行REST
+    iotcoap.rest.run(); //运行REST
 
 创建iot.json
 
@@ -64,8 +63,11 @@ Post测试
             "insert or replace into basic (id,value,sensors1,sensors2) VALUES (1, 'is id 1', 19, 20);",
             "insert or replace into basic (id,value,sensors1,sensors2) VALUES (2, 'is id 2', 20, 21);"
         ],
-        "query_table":"select * from basic;"
-    } 
+        "query_table":"select * from basic;",
+        "rest_url": "/id/:id",
+        "rest_post_url": "/",
+        "rest_port": 8848
+    }
 
 接着运行
 
