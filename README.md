@@ -42,9 +42,11 @@ Post测试
 
 新建一个index.js
 
-    var iotcoap         = require('iot-coap');
+    const iotcoap         = require('iot-coap')
+          ,iotreset       = require('iot-coap')
 
-    iotcoap.run();    
+    iotcoap.run();
+    iotrest.run();  //运行REST
 
 创建iot.json
 
@@ -82,6 +84,12 @@ Post测试
 ###Test
 
     coap coap://localhost
+    
+###REST Test
+    
+####POST
+    
+    curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
 
 ##文档
 
