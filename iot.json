@@ -14,5 +14,6 @@
     ],
     "query_table":"select * from basic;",
     "rest_url": "/id/:id",
+    "rest_post_url": "/",
     "rest_port": 8848
 }

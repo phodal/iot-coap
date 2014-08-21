@@ -36,27 +36,20 @@ function blockToJson(block) {
     return result;
 }
 
-function generate_key(block) {
+function generateDBKey(this_block) {
     var str = "";
-    var all_key = "";
-    _.each(config["key"], function (key) {
+    _.each(this_block, function (key) {
         str += key + ",";
-        all_key += key
     });
     str = str.substring(0, str.length - 1);
-    var w = "";
-    _.each(block, function (value, index) {
-        w += value + ",";
-    });
-    return {str: str, w: w};
+    return str;
 }
 
 DBHelper.syncData = function (block, callback) {
+    console.log(block);
     var db = new sqlite3.Database(config["db_name"]);
-    var __ret = generate_key(block);
-    var str = __ret.str;
-    var w = __ret.w;
-    var string = w.substring(0, w.length - 1);
+    var str = generateDBKey(config["key"]);
+    var string = generateDBKey(block);
     var insert_db_string = "insert or replace into " + config["table_name"] + " (" + str + ") VALUES (" + string + ");";
     console.log(insert_db_string);
     db.all(insert_db_string, function (err) {

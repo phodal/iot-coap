@@ -14,24 +14,7 @@ function iotrest(){
 
 }
 
-iotrest.run = function(config){
-    var restdb_helper = require('./server/db_helper');
-    function respond(req, res, next) {
-        restdb_helper.urlQueryData(req.url, function(e){
-            res.send(JSON.parse(e));
-            next();
-        })
-    };
-
-    restserver.get(config["rest_url"], respond);
-    restserver.head(config["rest_url"], respond);
-
-    restserver.listen(config["rest_port"], function() {
-        console.log('%s listening at %s', restserver.name, restserver.url);
-    })
-};
-
-iotcoap.run = function(){
+iotrest.run = function(){
     fs.readFile(file, 'utf8', function (err, data) {
         if (err) {
             console.log('Error: ' + err);
@@ -40,24 +23,51 @@ iotcoap.run = function(){
 
         var config = JSON.parse(data);
         module.exports.config = config;
-        iotrest.run(config);
+        startRESTIOT(config);
+    });
+    function startRESTIOT(config){
+        const rest_helper = require("./server/rest_helper.js");
+
+        restserver.use(restify.gzipResponse());
+        restserver.use(restify.bodyParser());
+        restserver  .use(restify.acceptParser(['json', 'application/json']));
+
+        restserver.get(config["rest_url"],       rest_helper.get_respond);
+        restserver.put(config["rest_post_url"],  rest_helper.post_respond);
+        restserver.del(config["rest_url"],       rest_helper.del_respond);
+        restserver.post(config["rest_post_url"], rest_helper.post_respond);
+        restserver.head(config["rest_url"],      rest_helper.respond);
+
+        restserver.listen(config["rest_port"], function() {
+            console.log('%s listening at %s', restserver.name, restserver.url);
+        });
+    }
+};
+
+iotcoap.run = function(){
+    fs.readFile(file, 'utf8', function (err, data) {
+        if (err) {
+            console.log('Error: ' + err);
+            return;
+        }
+        var config = JSON.parse(data);
+        module.exports.config = config;
+
         startIOT();
     });
 
     function startIOT(){
-        var request_handler = require('./server/request_handler.js');
+        const request_handler = require('./server/request_handler.js');
         coapserver.on('request', function(req, res) {
             switch(req.method){
-                case "GET": request_handler.getHandler(req, res);
+                case "GET":     request_handler.getHandler(req, res);
                     break;
                 case "POST":
-                case "PUT":
-                    request_handler.syncHandler(req, res);
+                case "PUT":     request_handler.syncHandler(req, res);
                     break;
-                case "DELETE":
-                    request_handler.deleteHandler(req, res);
+                case "DELETE":  request_handler.deleteHandler(req, res);
                     break;
-                default: request_handler.errorRequest(res);
+                default:        request_handler.errorRequest(res);
                     break;
             }
         });
@@ -68,7 +78,5 @@ iotcoap.run = function(){
     }
 };
 
-
-//iotcoap.run();
-//iotrest.run();
 module.exports = iotcoap;
+module.exports = iotrest;
