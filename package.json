@@ -12,7 +12,8 @@
     "coap-cli": "0.3.0",
     "sqlite3": "2.2.7",
     "underscore": "1.6.0",
-    "jstoxml": "0.2.2"
+    "jstoxml": "0.2.2",
+    "restify": "2.8.2"
   },
   "keywords": [
     "coap",
