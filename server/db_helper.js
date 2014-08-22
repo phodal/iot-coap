@@ -63,7 +63,7 @@ DBHelper.deleteData = function (url, callback) {
     var db = new sqlite3.Database(config["db_name"]);
 
     console.log("DELETE * FROM  " + config["table_name"] + "  where " + url.split('/')[1] + "=" + url.split('/')[2]);
-    var insert_db_string = "DELETE FROM  " + config["table_name"] + "  where " + url.split('/')[1] + "=" + url.split('/')[2] ;
+    var insert_db_string = "DELETE * FROM  " + config["table_name"] + "  where " + url.split('/')[1] + "=" + url.split('/')[2] ;
     console.log(insert_db_string);
     db.all(insert_db_string, function(err){
         db.close();

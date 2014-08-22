@@ -1,8 +1,9 @@
 const coap       = require('coap')
      ,requestURI = 'coap://localhost/'
-     ,url        = require('url').parse(requestURI + 'id/1/')
+     ,url        = require('url').parse(requestURI + 'id/2/')
      ,req        = coap.request(url)
-     ,bl         = require('bl');
+     ,bl         = require('bl')
+     ,req2       = coap.request(url);
 
 req.setOption('Block2',  new Buffer([0x2]));
 req.setHeader("Accept", "application/json");
@@ -15,7 +16,6 @@ req.on('response', function(res) {
 });
 req.end();
 
-var req2 = coap.request(url);
 req2.setHeader("Accept", "application/xml");
 req2.on('response', function(res2) {
     res2.pipe(bl(function(err, data) {
