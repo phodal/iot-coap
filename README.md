@@ -18,26 +18,6 @@
 
 ##install
 
-需要安装有Sqlite3及Nodejs
-
-
-###安装node依赖
-
-     npm install
-
-###测试脚本
-
-Get测试
-
-    node examples/get.js
-
-Post测试
-  
-    node examples/posts.js
-
-
-##运行 方式1
-
     npm install iot-coap
 
 新建一个index.js
@@ -73,19 +53,9 @@ Post测试
 
     node index.js
 
-##运行 方式2
-
-注释掉index.js中的
-
-    iotcoap.run()
-
-运行
-
-    node index.js
-
 ###Test
 
-    coap coap://localhost
+    node method_test/get.js
     
 ###REST Test
     
