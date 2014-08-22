@@ -18,6 +18,7 @@ rest.run = function(){
         module.exports.config = config;
         startRESTIOT(config);
     });
+
     function startRESTIOT(config){
         const rest_helper = require("./rest_helper.js");
 

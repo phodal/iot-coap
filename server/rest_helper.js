@@ -1,5 +1,5 @@
 const restdb_helper = require('./db_helper.js')
-      ,_            = require("underscore");
+    ,_            = require("underscore");
 
 function rest_helper(){
 
@@ -11,6 +11,7 @@ rest_helper.respond = function(req, res, next) {
         next();
     })
 };
+
 
 rest_helper.get_respond = function (req, res, next) {
     restdb_helper.urlQueryData(req.url, function(e){
@@ -26,7 +27,7 @@ rest_helper.post_respond = function (req, res, next) {
             key = "'" + key + "'";
         }
         data.push(key);
-    })
+    });
     restdb_helper.syncData(data, function(e){
         res.send({});
         next();
