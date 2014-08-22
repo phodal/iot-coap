@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Iot-coap by gmszone</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Iot-coap</h1>
+        <p class="header">物联网系统设计</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/gmszone/iot-coap/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/gmszone/iot-coap/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/gmszone/iot-coap">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/gmszone">gmszone</a></p>
+
+
+      </header>
+      <section>
+        <p><a href="https://travis-ci.org/gmszone/iot-coap"><img src="https://api.travis-ci.org/gmszone/iot-coap.png" alt="Build Status"></a></p>
+
+<p><a href="https://nodei.co/npm/iot-coap/"><img src="https://nodei.co/npm/iot-coap.png" alt="NPM"></a></p>
+
+<p><a href="https://nodei.co/npm/iot-coap/"><img src="https://nodei.co/npm-dl/iot-coap.png" alt="NPM"></a></p>
+
+<h1>
+<a name="%E7%89%A9%E8%81%94%E7%BD%91%E7%B3%BB%E7%BB%9F-coap%E7%89%88" class="anchor" href="#%E7%89%A9%E8%81%94%E7%BD%91%E7%B3%BB%E7%BB%9F-coap%E7%89%88"><span class="octicon octicon-link"></span></a>物联网系统 CoAP版</h1>
+
+<p>这是一个开源的最小物联网系统的CoAP版，如果你还是一个初学者建议用HTTP版 <a href="https://github.com/gmszone/iot">https://github.com/gmszone/iot</a></p>
+
+<h2>
+<a name="%E4%B8%BB%E8%A6%81%E4%BE%9D%E8%B5%96%E5%BA%93" class="anchor" href="#%E4%B8%BB%E8%A6%81%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="octicon octicon-link"></span></a>主要依赖库</h2>
+
+<ul>
+<li>RESTify</li>
+<li><a href="https://github.com/mcollina/node-coap">Node-CoAP</a></li>
+<li>Node Sqlite3</li>
+</ul><h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>install</h2>
+
+<pre><code>npm install iot-coap
+</code></pre>
+
+<p>新建一个index.js</p>
+
+<pre><code>const iotcoap         = require('iot-coap');
+
+iotcoap.run();
+iotcoap.rest.run(); //运行REST
+</code></pre>
+
+<p>创建iot.json</p>
+
+<pre><code>{
+    "db_name": "iot.db",
+    "table_name": "basic",
+    "key":[
+        "id",
+        "value",
+        "sensors1",
+        "sensors2"
+    ],
+    "db_table": "id integer primary key, value text, sensors1 float, sensors2 float",
+    "init_table":[
+        "insert or replace into basic (id,value,sensors1,sensors2) VALUES (1, 'is id 1', 19, 20);",
+        "insert or replace into basic (id,value,sensors1,sensors2) VALUES (2, 'is id 2', 20, 21);"
+    ],
+    "query_table":"select * from basic;",
+    "rest_url": "/id/:id",
+    "rest_post_url": "/",
+    "rest_port": 8848
+}
+</code></pre>
+
+<p>接着运行</p>
+
+<pre><code>node index.js
+</code></pre>
+
+<h3>
+<a name="test" class="anchor" href="#test"><span class="octicon octicon-link"></span></a>Test</h3>
+
+<pre><code>node method_test/get.js
+</code></pre>
+
+<h3>
+<a name="rest-test" class="anchor" href="#rest-test"><span class="octicon octicon-link"></span></a>REST Test</h3>
+
+<h4>
+<a name="post" class="anchor" href="#post"><span class="octicon octicon-link"></span></a>POST</h4>
+
+<pre><code>curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
+</code></pre>
+
+<h2>
+<a name="%E6%96%87%E6%A1%A3" class="anchor" href="#%E6%96%87%E6%A1%A3"><span class="octicon octicon-link"></span></a>文档</h2>
+
+<p><a href="http://www.phodal.com/blog/use-constrained-application-protocol-in-internet-of-things/">CoAP与物联网系统</a></p>
+
+<p><a href="http://www.phodal.com/blog/use-node-coap-create-a-coap-server/">物联网系统与CoAP之Hello,World</a></p>
+
+<p><a href="http://www.phodal.com/blog/use-coap-build-internet-of-things-return-json/">CoAP与物联网系统之返回JSON</a></p>
+
+<p><a href="http://www.phodal.com/blog/use-node-coap-sqlite-create-a-coap-server-get-response/">构建基于CoAP SQLite Nodejs的物联网之查询数据</a></p>
+
+<p><a href="http://www.phodal.com/blog/use-coap-nodejs-sqlite-build-iot/">构建基于CoAP SQLite Nodejs的物联网之数据库</a></p>
+
+<h2>
+<a name="liscense" class="anchor" href="#liscense"><span class="octicon octicon-link"></span></a>Liscense</h2>
+
+<p>© 2014 <a href="http://www.phodal.com">Phodal Huang</a>. This code is distributed under the MIT license.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
