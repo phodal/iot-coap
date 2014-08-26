@@ -63,6 +63,18 @@
     
     curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
 
+###在线测试
+
+1. CoAP
+修改url为
+
+    coap://iot-coap.phodal.com
+
+2. RESTful
+修改url为
+
+    http://iot-coap.phodal.com:8896
+
 ##文档
 
 [CoAP与物联网系统][basic]
