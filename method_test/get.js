@@ -10,19 +10,16 @@ req.setHeader("Accept", "application/json");
 req.on('response', function(res) {
 	res.pipe(bl(function(err, data) {
 		var json = JSON.parse(data);
-        console.log("JSON Request:");
 		console.log(json);
 	}));
 
 });
 req.end();
 
-
 req2.setHeader("Accept", "application/xml");
 req2.on('response', function(res2) {
     res2.pipe(bl(function(err, data) {
-        console.log("XML Request:")
-        console.log(data);
+        console.log("XML:" + data);
     }));
 
 });

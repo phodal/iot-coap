@@ -35,9 +35,6 @@ request_helper.getHandler = function(req, res) {
         case "application/xml":
             qh.returnXML(req, res);
             break;
-        default:
-            qh.returnJSON(req, res);
-            break;
     }
 };
 
