@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.1.10",
+  "version": "0.1.13",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
@@ -13,8 +13,7 @@
     "sqlite3": "2.2.7",
     "underscore": "1.6.0",
     "jstoxml": "0.2.2",
-    "restify": "2.8.2",
-    "socket.io": "1.0.6"
+    "restify": "2.8.2"
   },
   "keywords": [
     "coap",
