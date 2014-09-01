@@ -18,14 +18,13 @@
 
 ##install
 
-    注意：windows系统需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件，
-    不然npm install失败
+``注意``：windows系统npm install失败时，需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件
     
     npm install iot-coap
 
 新建一个index.js
 
-    注意：如果已经存在一个index.js文件，请将下面内容添加到文件末尾
+``注意``：如果已经存在一个index.js文件，请将下面内容添加到文件末尾
 
     const iotcoap         = require('iot-coap');
 
