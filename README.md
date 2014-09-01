@@ -18,10 +18,14 @@
 
 ##install
 
-    注意：windows系统需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件，不然npm install失败
-    npm install iot-coap
+    注意：windows系统需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件，
+    不然npm install失败
+    
+    <b>npm install iot-coap</b>
 
 新建一个index.js
+
+    注意：如果已经存在一个index.js文件，请将下面内容添加到文件末尾
 
     const iotcoap         = require('iot-coap');
 
@@ -54,13 +58,17 @@
 
     node index.js
 
-###Test
+##Test
 
-    node method_test/get.js
+###firefox GET
     
-###REST Test
+    可以使用firefox，外挂copper插件来测试，不过记得选上Debug Contrl，Accept, Content-Format选application/json
+
+###Node GET
     
-####POST
+    <b>node method_test/get.js</b>
+    
+###HTTP POST
     
     curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
 
