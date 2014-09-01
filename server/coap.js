@@ -1,18 +1,11 @@
 const coap             = require('coap')
-    ,coapserver      = coap.createServer({})
-    ,fs              = require('fs')
-    ,file            = './iot.json';
+      ,coapserver      = coap.createServer({})
+      ,fs              = require('fs')
+      ,file            = './iot.json'
+      ,_               = require('underscore');
 
 function iotcoap(){
 
-}
-
-function url_sanity_check(url) {
-	if (url.split('/')[1] == 'id' && url.split('/')[2] == true) {
-		return true;
-	}
-	
-	return false;	
 }
 
 iotcoap.run = function(){
@@ -24,14 +17,26 @@ iotcoap.run = function(){
         var config = JSON.parse(data);
         module.exports.config = config;
 
-        startIOT();
+        startIOT(config);
     });
 
-    function startIOT(){
+    function startIOT(config){
+
+        function url_sanity_check(url) {
+            if(url.split('/')[2] == false){
+                return false;
+            }
+            _.each(config["key"], function (array, index) {
+                if(url.split('/')[1] === config["key"][index] ){
+                    return true;
+                }
+            });
+        }
+
         const request_handler = require('./request_handler.js');
         coapserver.on('request', function(req, res) {
         	if (url_sanity_check(req.url) == false) {
-        		request_handler.errorRequest(res);
+        		request_handler.urlErrorRequest(res);
         		return;
         	}
         	
