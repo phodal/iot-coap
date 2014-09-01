@@ -59,9 +59,11 @@
 
 ##Test
 
-###firefox GET
+###Firefox
     
-    可以使用firefox，外挂copper插件来测试，不过记得选上Debug Contrl，Accept, Content-Format选application/json
+1. 安装copper插件
+2. 选上Debug Contrl
+3. 在Accept, Content-Format选application/json
 
 ###Node GET
     
