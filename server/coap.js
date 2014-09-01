@@ -7,6 +7,14 @@ function iotcoap(){
 
 }
 
+function url_sanity_check(url) {
+	if (url.split('/')[1] == 'id' && url.split('/')[2] == true) {
+		return true;
+	}
+	
+	return false;	
+}
+
 iotcoap.run = function(){
     fs.readFile(file, 'utf8', function (err, data) {
         if (err) {
@@ -22,6 +30,11 @@ iotcoap.run = function(){
     function startIOT(){
         const request_handler = require('./request_handler.js');
         coapserver.on('request', function(req, res) {
+        	if (url_sanity_check(req.url) == false) {
+        		request_handler.errorRequest(res);
+        		return;
+        	}
+        	
             switch(req.method){
                 case "GET":     request_handler.getHandler(req, res);
                     break;
