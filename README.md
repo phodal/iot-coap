@@ -21,7 +21,7 @@
     注意：windows系统需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件，
     不然npm install失败
     
-    <b>npm install iot-coap</b>
+    npm install iot-coap
 
 新建一个index.js
 
@@ -66,7 +66,7 @@
 
 ###Node GET
     
-    <b>node method_test/get.js</b>
+    node method_test/get.js
     
 ###HTTP POST
     
