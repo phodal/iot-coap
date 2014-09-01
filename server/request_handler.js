@@ -1,6 +1,5 @@
 const qh   = require('./query_helper.js')
-      ,_   = require("underscore")
-      ,bl  = require('bl');
+      ,_   = require("underscore");
 
 function request_helper(){
 
@@ -47,9 +46,17 @@ request_helper.methodNotSupport = function(res, req) {
         message: req.method + " is no support now"
     }));
 };
+
 request_helper.errorRequest = function(res) {
     res.end(JSON.stringify({
         error: "sorry"
+    }));
+};
+
+
+request_helper.urlErrorRequest = function(res) {
+    res.end(JSON.stringify({
+        errorType: "url"
     }));
 };
 
