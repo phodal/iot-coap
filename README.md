@@ -85,6 +85,10 @@
 
     http://iot-coap.phodal.com:8896
 
+##交流
+
+QQ群：348100589
+
 ##文档
 
 [CoAP与物联网系统][basic]
