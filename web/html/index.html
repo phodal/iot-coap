@@ -1,0 +1,26 @@
+<html> 
+<head> 
+<script language="javascript"> </script> 
+<script src="./jquery-1.7.2.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({
+		type: "GET",
+		url: "/v1.0/id/1/sensor/2",
+		dataType: "json",
+		success: function (data) {
+			var res = JSON.parse(data);
+			alert(res.val);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
+}); 
+</script> 
+</script> 
+</head> 
+<body> 
+<h1>hello world</h1>
+</body> 
+</html> 

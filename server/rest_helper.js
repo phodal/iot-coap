@@ -5,7 +5,7 @@ function rest_helper(){
 
 }
 
-rest_helper.respond = function(req, res, next) {
+rest_helper.response = function(req, res, next) {
     restdb_helper.urlQueryData(req.url, function(e){
         res.send(JSON.parse(e));
         next();
@@ -13,14 +13,15 @@ rest_helper.respond = function(req, res, next) {
 };
 
 
-rest_helper.get_respond = function (req, res, next) {
+rest_helper.get_response = function (req, res, next) {
     restdb_helper.urlQueryData(req.url, function(e){
-        res.send(JSON.parse(e));
+        res.send(e);
+		console.log('Sent: ' + e);
         next();
     })
 };
 
-rest_helper.post_respond = function (req, res, next) {
+rest_helper.post_response = function (req, res, next) {
     var data=[];
     _.each((req.params), function(key,value){
         if(typeof key === "string"){
@@ -35,7 +36,7 @@ rest_helper.post_respond = function (req, res, next) {
 };
 
 
-rest_helper.del_respond = function (req, res, next) {
+rest_helper.del_response = function (req, res, next) {
     restdb_helper.urlQueryData(req.url, function(e){
         res.send(JSON.parse(e));
         next();
