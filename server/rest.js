@@ -20,17 +20,14 @@ rest.run = function(){
 	});
 
 	function startRESTIOT(config){
-		const html_helper = require("./html_helper.js");
 		const rest_helper = require("./rest_helper.js");
 
-        restserver  .use(restify.acceptParser(['json', 'application/json']));
-        //restserver  .use(restify.acceptParser(['text', 'text/html']));
-restserver.use(restify.dateParser());
-restserver.use(restify.queryParser());
-restserver.use(restify.gzipResponse());
-restserver.use(restify.bodyParser());
+        		restserver  .use(restify.acceptParser(['json', 'application/json']));
+		restserver.use(restify.dateParser());
+		restserver.use(restify.queryParser());
+		restserver.use(restify.gzipResponse());
+		restserver.use(restify.bodyParser());
 
-		//restserver.get("/html/:html", 					html_helper.get_response);
 		restserver.get("/html/:html", 	restify.serveStatic({'directory': 'web'}));
 		restserver.get("/v1.0/id/:id/sensor/:sensor",	rest_helper.get_response);
 		restserver.put(config["rest_post_url"],			rest_helper.post_response);
