@@ -7,7 +7,7 @@
         "sensors1",
         "sensors2"
     ],
-    "db_table": "idx integer primary key autoincrement, id integer ,sensor integer, value text",
+    "db_table": "idx integer primary key autoincrement, id integer ,sensor integer, ts datetime, val text",
     "query_table":"select * from basic;",
     "rest_post_url": "/",
     "rest_port": 80

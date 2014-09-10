@@ -6,11 +6,11 @@
 $(document).ready(function(){
 	$.ajax({
 		type: "GET",
-		url: "/v1.0/id/1/sensor/2",
+		url: "/v1.0/id/1/sensor/1",
 		dataType: "json",
 		success: function (data) {
-			var res = JSON.parse(data);
-			alert(res.val);
+			//var res = JSON.parse(data);
+			alert(data);
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);

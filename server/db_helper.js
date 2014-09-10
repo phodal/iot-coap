@@ -1,7 +1,7 @@
-const sqlite3  = require( 'sqlite3' ).verbose( )
-, fs		   = require( "fs" )
-, _			   = require( "underscore" )
-, config	   = require( "../index" ).config;
+const sqlite3	= require( 'sqlite3' ).verbose( )
+const fs		= require( "fs" )
+const _		= require( "underscore" )
+const config	= require( "../index" ).config;
 
 function DBHelper( )
 {
@@ -15,8 +15,13 @@ DBHelper.initDB = function( )
 
 	db.serialize( function( ) {
 		db.run( create_table );
-		db.run('insert or replace into basic (id, sensor, value) VALUES (1, 1, \'{"ts":"2014-09-06T16:13:14", "val":25.6}\');');
-		db.run('insert or replace into basic (id, sensor, value) VALUES (1, 2, \'{"ts":"2014-09-06T16:18:14", "val":27.1}\');');
+		date = new Date();
+		db.run("insert or replace into basic (id, sensor, ts, val) VALUES ($id, $sensor, $ts, $val)", {
+			$id: 1,
+			$sensor: 1,
+			$ts: date.toISOString(),
+			$val: '25.6'
+		});
 	} );
 	db.close( );
 };
@@ -90,8 +95,8 @@ DBHelper.urlQueryData = function( url, callback )
 
 	db.all (sql, function(err, rows) {
 		db.close( );
-		try {debugger;
-			callback(rows[1].value);
+		try {
+			callback(JSON.stringify(rows[1]));
 		}
 		catch( e ) {
 			callback( err );
