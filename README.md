@@ -61,8 +61,10 @@
 
 ###Firefox
     
-1. 安装copper插件
+1. 安装copper插件(下载地址:[https://addons.mozilla.org/en-US/firefox/addon/copper-270430/](https://addons.mozilla.org/en-US/firefox/addon/copper-270430/))
+
 2. 选上Debug Contrl
+
 3. 在Accept, Content-Format选application/json
 
 ###Node GET
