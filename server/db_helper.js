@@ -91,12 +91,18 @@ DBHelper.deleteData = function( url, callback )
 DBHelper.urlQueryData = function( url, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
-	var sql = "SELECT * FROM  " + config["table_name"] + "	where id=" + url.split( '/' )[3] + " and sensor=" + url.split( '/' )[5];
+	var sql = "SELECT * FROM " + config["table_name"] + " where id=" + url.split( '/' )[3] + " and sensor=" + url.split( '/' )[5];
 
 	db.all (sql, function(err, rows) {
 		db.close( );
 		try {
-			callback(JSON.stringify(rows[1]));
+debugger;
+			var memberfilter = new Array();
+			memberfilter[0] = "ts";
+			memberfilter[1] = "val";
+			 jsonText = JSON.stringify(rows, memberfilter);
+
+			callback(jsonText);
 		}
 		catch( e ) {
 			callback( err );

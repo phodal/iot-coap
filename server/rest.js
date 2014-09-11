@@ -29,6 +29,7 @@ rest.run = function(){
 		restserver.use(restify.bodyParser());
 
 		restserver.get("/html/:html", 	restify.serveStatic({'directory': 'web'}));
+		restserver.get("/js/:js", 	restify.serveStatic({'directory': 'web'}));
 		restserver.get("/v1.0/id/:id/sensor/:sensor",	rest_helper.get_response);
 		restserver.put(config["rest_post_url"],			rest_helper.post_response);
 		restserver.del("/v1.0/id/:id/sensor/:sensor",	rest_helper.del_response);
