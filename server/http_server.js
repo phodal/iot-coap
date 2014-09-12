@@ -63,11 +63,11 @@ rest.run = function(){
 		// timestamp & value options
 		//
 
-		restserver.get	("/v1.0/id/:id/sensor/:sensor",	http_helper.get_response);
-		restserver.put	(config["rest_post_url"],		http_helper.post_response);
-		restserver.del	("/v1.0/id/:id/sensor/:sensor",	http_helper.del_response);
 		restserver.post	(config["rest_post_url"],		http_helper.post_response);
-		restserver.head	("/v1.0/id/:id/sensor/:sensor",	http_helper.response);
+		restserver.put	(config["rest_post_url"],		http_helper.post_response);
+		restserver.get	("/v1.0/id/:id/sensor/:sensor",	http_helper.get_response);
+		restserver.del	("/v1.0/id/:id/sensor/:sensor",	http_helper.del_response);
+
 
 		//
 		// server listening
