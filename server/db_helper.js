@@ -14,6 +14,7 @@ db_helper.initDB = function( )
 	db.serialize( function( ) {
 		db.run( 'create table if not exists ' + config["data_tbl_name"] + '(' + config["data_tbl_create_sql"] + ');' );
 		db.run( 'create table if not exists ' + config["id_tbl_name"] + '(' + config["id_tbl_create_sql"] + ');' );
+		db.run( 'create table if not exists ' + config["ch_tbl_name"] + '(' + config["ch_tbl_create_sql"] + ');' );
 
 		date = new Date();
 		db.run('insert or replace into ' + config["data_tbl_name"] + ' (id, sensor, ts, val) VALUES ($id, $sensor, $ts, $val)', {
@@ -128,6 +129,96 @@ db_helper.del_id = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 	var sql = "delete from " + config["id_tbl_name"] + " where id=" + req.url.split( '/' )[3];
+
+	db.all (sql, function(err, rows) {
+		db.close();
+		try {
+			callback('ok');
+		}
+		catch( e ) {
+			callback( err );
+		}
+	} );
+};
+
+db_helper.post_ch = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('insert into ' + config["ch_tbl_name"] +
+			' (id, ch, type, name, desc, unit) VALUES ($id, $ch, $type, $name, $desc, $unit)', {
+			$id: req.url.split( '/' )[3],
+			$ch: req.url.split( '/' )[5],
+			$type: jsonText.type,
+			$name: jsonText.name,
+			$desc: jsonText.desc,
+			$unit: jsonText.unit,
+		});
+
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
+};
+
+db_helper.put_ch = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('replace into ' + config["ch_tbl_name"] +
+			' (id, ch, type, name, desc, unit) VALUES ($id, $ch, $type, $name, $desc, $unit)', {
+			$id: req.url.split( '/' )[3],
+			$ch: req.url.split( '/' )[5],
+			$type: jsonText.type,
+			$name: jsonText.name,
+			$desc: jsonText.desc,
+			$unit: jsonText.unit,
+		});
+
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
+};
+
+db_helper.get_ch = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "select * from "
+		+ config["ch_tbl_name"]
+		+ " where id=" + req.url.split( '/' )[3]
+		+ " and ch=" + req.url.split( '/' )[5];;
+
+	db.all (sql, function(err, rows) {
+		db.close();
+		try {
+			jsonText = JSON.stringify(rows);
+
+			callback(jsonText);
+		}
+		catch( e ) {
+			callback( err );
+		}
+	} );
+};
+
+db_helper.del_ch = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "delete from "
+		+ config["ch_tbl_name"]
+		+ " where id=" + req.url.split( '/' )[3]
+		+ " and ch=" + req.url.split( '/' )[5];
 
 	db.all (sql, function(err, rows) {
 		db.close();

@@ -4,6 +4,8 @@
     "data_tbl_create_sql": "idx integer primary key autoincrement, id integer ,sensor integer, ts datetime, val text",
 	"id_tbl_name": "id_tbl",
 	"id_tbl_create_sql": "id integer primary key, name text, desc text, local text, latitude real, longitude real",
+	"ch_tbl_name": "ch_tbl",
+	"ch_tbl_create_sql": "id integer, ch integer, type text, name text, desc text, unit text, primary key(id, ch)",
 
     "key":[
         "id",

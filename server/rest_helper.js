@@ -6,7 +6,6 @@ function rest_helper(){
 }
 
 rest_helper.post_id = function (req, res, next) {
-	debugger;
 	db_helper.post_id(req, function(e){
 		res.send(e);
 		console.log('post_id: ' + e);
@@ -42,6 +41,46 @@ rest_helper.get_ids = function (req, res, next) {
 	db_helper.urlQueryData(req.url, function(e){
 		res.send(e);
 		console.log('get_ids: ' + e);
+		next();
+	})
+};
+
+rest_helper.post_ch = function (req, res, next) {
+	db_helper.post_ch(req, function(e){
+		res.send(e);
+		console.log('post_ch: ' + e);
+		next();
+	})
+};
+
+rest_helper.put_ch = function (req, res, next) {
+	db_helper.put_ch(req, function(e){
+		res.send(e);
+		console.log('put_ch: ' + e);
+		next();
+	})
+};
+
+rest_helper.get_ch = function (req, res, next) {
+	db_helper.get_ch(req, function(e){
+		res.send(e);
+		console.log('get_ch: ' + e);
+		next();
+	})
+};
+
+rest_helper.del_ch = function (req, res, next) {
+	db_helper.del_ch(req, function(e){
+		res.send(e);
+		console.log('del_ch: ' + e);
+		next();
+	})
+};
+
+rest_helper.get_chs = function (req, res, next) {
+	db_helper.get_chs(req.url, function(e){
+		res.send(e);
+		console.log('get_chs: ' + e);
 		next();
 	})
 };

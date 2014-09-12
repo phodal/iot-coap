@@ -22,11 +22,19 @@ rest.run = function(){
 	function startRESTIOT(config){
 		const rest_helper = require("./rest_helper.js");
 
+		//
+		// set http parameters
+		//
+
         restserver.use(restify.acceptParser(['json', 'application/json']));
 		restserver.use(restify.dateParser());
 		restserver.use(restify.queryParser());
 		restserver.use(restify.gzipResponse());
 		restserver.use(restify.bodyParser());
+
+		//
+		// http for static files
+		//
 
 		restserver.get("/html/:html", 	restify.serveStatic({'directory': 'web'}));
 		restserver.get("/js/:js", 	restify.serveStatic({'directory': 'web'}));
@@ -35,15 +43,21 @@ rest.run = function(){
 		// device id options
 		//
 
-		restserver.post	("/v1.0/id/:id",	rest_helper.post_id);
-		restserver.put	("/v1.0/id/:id",	rest_helper.put_id);
-		restserver.get	("/v1.0/id/:id",	rest_helper.get_id);
-		restserver.del	("/v1.0/id/:id",	rest_helper.del_id);
-		restserver.get	("/v1.0/id",		rest_helper.get_ids);
+		restserver.post	("/v1.0/id/:id",		rest_helper.post_id);
+		restserver.put	("/v1.0/id/:id",		rest_helper.put_id);
+		restserver.get	("/v1.0/id/:id",		rest_helper.get_id);
+		restserver.del	("/v1.0/id/:id",		rest_helper.del_id);
+		restserver.get	("/v1.0/id",			rest_helper.get_ids);
 
 		//
 		// channel options
 		//
+
+		restserver.post	("/v1.0/id/:id/ch/:ch",	rest_helper.post_ch);
+		restserver.put	("/v1.0/id/:id/ch/:ch",	rest_helper.put_ch);
+		restserver.get	("/v1.0/id/:id/ch/:ch",	rest_helper.get_ch);
+		restserver.del	("/v1.0/id/:id/ch/:ch",	rest_helper.del_ch);
+		restserver.get	("/v1.0/id/:id/ch",		rest_helper.get_chs);
 
 		//
 		// timestamp & value options
