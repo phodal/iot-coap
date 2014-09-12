@@ -22,7 +22,7 @@ rest.run = function(){
 	function startRESTIOT(config){
 		const rest_helper = require("./rest_helper.js");
 
-        		restserver  .use(restify.acceptParser(['json', 'application/json']));
+        restserver.use(restify.acceptParser(['json', 'application/json']));
 		restserver.use(restify.dateParser());
 		restserver.use(restify.queryParser());
 		restserver.use(restify.gzipResponse());
@@ -30,11 +30,34 @@ rest.run = function(){
 
 		restserver.get("/html/:html", 	restify.serveStatic({'directory': 'web'}));
 		restserver.get("/js/:js", 	restify.serveStatic({'directory': 'web'}));
-		restserver.get("/v1.0/id/:id/sensor/:sensor",	rest_helper.get_response);
-		restserver.put(config["rest_post_url"],			rest_helper.post_response);
-		restserver.del("/v1.0/id/:id/sensor/:sensor",	rest_helper.del_response);
-		restserver.post(config["rest_post_url"],			rest_helper.post_response);
-		restserver.head("/v1.0/id/:id/sensor/:sensor",	rest_helper.response);
+
+		//
+		// device id options
+		//
+
+		restserver.post	("/v1.0/id/:id",	rest_helper.post_id);
+		restserver.put	("/v1.0/id/:id",	rest_helper.put_id);
+		restserver.get	("/v1.0/id/:id",	rest_helper.get_id);
+		restserver.del	("/v1.0/id/:id",	rest_helper.del_id);
+		restserver.get	("/v1.0/id/",		rest_helper.get_ids);
+
+		//
+		// channel options
+		//
+
+		//
+		// timestamp & value options
+		//
+
+		restserver.get	("/v1.0/id/:id/sensor/:sensor",	rest_helper.get_response);
+		restserver.put	(config["rest_post_url"],		rest_helper.post_response);
+		restserver.del	("/v1.0/id/:id/sensor/:sensor",	rest_helper.del_response);
+		restserver.post	(config["rest_post_url"],		rest_helper.post_response);
+		restserver.head	("/v1.0/id/:id/sensor/:sensor",	rest_helper.response);
+
+		//
+		// server listening
+		//
 
 		restserver.listen(config["rest_port"], function() {
 			console.log('%s listening at %s', restserver.name, restserver.url);
