@@ -39,7 +39,7 @@ rest.run = function(){
 		restserver.put	("/v1.0/id/:id",	rest_helper.put_id);
 		restserver.get	("/v1.0/id/:id",	rest_helper.get_id);
 		restserver.del	("/v1.0/id/:id",	rest_helper.del_id);
-		restserver.get	("/v1.0/id/",		rest_helper.get_ids);
+		restserver.get	("/v1.0/id",		rest_helper.get_ids);
 
 		//
 		// channel options

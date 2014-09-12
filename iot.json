@@ -1,14 +1,17 @@
 {
     "db_name": "iot.db",
-    "table_name": "basic",
+    "data_tbl_name": "data_tbl",
+    "data_tbl_create_sql": "idx integer primary key autoincrement, id integer ,sensor integer, ts datetime, val text",
+	"id_tbl_name": "id_tbl",
+	"id_tbl_create_sql": "id integer primary key, name text, desc text, local text, latitude real, longitude real",
+
     "key":[
         "id",
         "value",
         "sensors1",
         "sensors2"
     ],
-    "db_table": "idx integer primary key autoincrement, id integer ,sensor integer, ts datetime, val text",
-    "query_table":"select * from basic;",
+
     "rest_post_url": "/",
     "rest_port": 80
 }

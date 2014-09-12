@@ -3,20 +3,20 @@ const fs		= require( "fs" )
 const _			= require( "underscore" )
 const config	= require( "../index" ).config;
 
-function DBHelper( )
+function db_helper( )
 {
 }
 
-DBHelper.initDB = function( )
+db_helper.initDB = function( )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
-	var create_table = 'create table if not exists ' + config["table_name"] + '(' + config["db_table"] + ');';
-
 	db.serialize( function( ) {
-		db.run( create_table );
+		db.run( 'create table if not exists ' + config["data_tbl_name"] + '(' + config["data_tbl_create_sql"] + ');' );
+		db.run( 'create table if not exists ' + config["id_tbl_name"] + '(' + config["id_tbl_create_sql"] + ');' );
+
 		date = new Date();
-		db.run("insert or replace into basic (id, sensor, ts, val) VALUES ($id, $sensor, $ts, $val)", {
+		db.run('insert or replace into ' + config["data_tbl_name"] + ' (id, sensor, ts, val) VALUES ($id, $sensor, $ts, $val)', {
 			$id: 1,
 			$sensor: 1,
 			$ts: date.toISOString(),
@@ -56,51 +56,65 @@ function generateDBKey( this_block )
 	return str;
 }
 
-DBHelper.syncData = function( block, callback )
+db_helper.post_id = function( req, callback )
 {
-	console.log( block );
 	var db = new sqlite3.Database( config["db_name"] );
 
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('insert into ' + config["id_tbl_name"] +
+			' (id, name, desc, local, latitude, longitude) VALUES ($id, $name, $desc, $local, $latitude, $longitude)', {
+			$id: req.url.split( '/' )[3],
+			$name: jsonText.name,
+			$desc: jsonText.desc,
+			$local: jsonText.local,
+			$latitude: parseFloat(jsonText.latitude),
+			$longitude: parseFloat(jsonText.longitude)
+		});
 
-	var str				   = generateDBKey( config["key"] );
-	var string			   = generateDBKey( block );
-	var insert_db_string   = "insert or replace into " + config["table_name"] + " (" + str + ") VALUES (" + string + ");";
-	console.log( insert_db_string );
-	db.all( insert_db_string, function( err )
-			{
-				db.close( );
-			} );
-	callback( );
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
 };
 
-DBHelper.deleteData = function( url, callback )
+db_helper.put_id = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('replace into ' + config["id_tbl_name"] +
+			' (id, name, desc, local, latitude, longitude) VALUES ($id, $name, $desc, $local, $latitude, $longitude)', {
+			$id: req.url.split( '/' )[3],
+			$name: jsonText.name,
+			$desc: jsonText.desc,
+			$local: jsonText.local,
+			$latitude: parseFloat(jsonText.latitude),
+			$longitude: parseFloat(jsonText.longitude)
+		});
 
-	console.log( "DELETE * FROM	" + config["table_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2] );
-	var insert_db_string = "DELETE * FROM  " + config["table_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2];
-	console.log( insert_db_string );
-	db.all( insert_db_string, function( err )
-			{
-				db.close( );
-			} );
-	callback( );
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
 };
 
-DBHelper.urlQueryData = function( url, callback )
+db_helper.get_id = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
-	var sql = "SELECT * FROM " + config["table_name"] + " where id=" + url.split( '/' )[3] + " and sensor=" + url.split( '/' )[5];
+	var sql = "select * from " + config["id_tbl_name"] + " where id=" + req.url.split( '/' )[3];
 
 	db.all (sql, function(err, rows) {
-		db.close( );
+		db.close();
 		try {
-debugger;
-			var memberfilter = new Array();
-			memberfilter[0] = "ts";
-			memberfilter[1] = "val";
-			 jsonText = JSON.stringify(rows, memberfilter);
+			jsonText = JSON.stringify(rows);
 
 			callback(jsonText);
 		}
@@ -110,4 +124,72 @@ debugger;
 	} );
 };
 
-module.exports = DBHelper;
+db_helper.del_id = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "delete from " + config["id_tbl_name"] + " where id=" + req.url.split( '/' )[3];
+
+	db.all (sql, function(err, rows) {
+		db.close();
+		try {
+			callback('ok');
+		}
+		catch( e ) {
+			callback( err );
+		}
+	} );
+};
+
+db_helper.syncData = function( block, callback )
+{
+	console.log( block );
+	var db = new sqlite3.Database( config["db_name"] );
+
+
+	var str				   = generateDBKey( config["key"] );
+	var string			   = generateDBKey( block );
+	var insert_db_string   = "insert or replace into " + config["data_tbl_name"] + " (" + str + ") VALUES (" + string + ");";
+	console.log( insert_db_string );
+	db.all( insert_db_string, function( err )
+			{
+				db.close( );
+			} );
+	callback( );
+};
+
+db_helper.deleteData = function( url, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+
+	console.log( "DELETE * FROM	" + config["data_tbl_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2] );
+	var insert_db_string = "DELETE * FROM  " + config["data_tbl_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2];
+	console.log( insert_db_string );
+	db.all( insert_db_string, function( err )
+			{
+				db.close( );
+			} );
+	callback( );
+};
+
+db_helper.urlQueryData = function( url, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "SELECT * FROM " + config["data_tbl_name"] + " where id=" + url.split( '/' )[3] + " and sensor=" + url.split( '/' )[5];
+
+	db.all (sql, function(err, rows) {
+		db.close( );
+		try {
+			var memberfilter = new Array();
+			memberfilter[0] = "ts";
+			memberfilter[1] = "val";
+			jsonText = JSON.stringify(rows, memberfilter);
+
+			callback(jsonText);
+		}
+		catch( e ) {
+			callback( err );
+		}
+	} );
+};
+
+module.exports = db_helper;
