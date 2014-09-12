@@ -1,7 +1,7 @@
-const qh   = require('./query_helper.js')
-      ,_   = require("underscore");
+const qh	= require('./query_helper.js')
+const _		= require("underscore");
 
-function request_helper(){
+function coap_helper(){
 
 }
 
@@ -15,7 +15,7 @@ function parse_buffer(req) {
     return block_save;
 }
 
-request_helper.syncHandler = function (req, res) {
+coap_helper.syncHandler = function (req, res) {
     switch (req.headers['Accept']) {
         case "application/json":
             qh.syncJSON(req, res, parse_buffer(req));
@@ -26,7 +26,7 @@ request_helper.syncHandler = function (req, res) {
     }
 };
 
-request_helper.getHandler = function(req, res) {
+coap_helper.getHandler = function(req, res) {
     switch (req.headers['Accept']) {
         case "application/json":
             qh.returnJSON(req, res);
@@ -37,27 +37,26 @@ request_helper.getHandler = function(req, res) {
     }
 };
 
-request_helper.deleteHandler = function(req, res){
+coap_helper.deleteHandler = function(req, res){
     qh.deleteData(req, res);
 };
 
-request_helper.methodNotSupport = function(res, req) {
+coap_helper.methodNotSupport = function(res, req) {
     res.end(JSON.stringify({
         message: req.method + " is no support now"
     }));
 };
 
-request_helper.errorRequest = function(res) {
+coap_helper.errorRequest = function(res) {
     res.end(JSON.stringify({
         error: "sorry"
     }));
 };
 
-
-request_helper.urlErrorRequest = function(res) {
+coap_helper.urlErrorRequest = function(res) {
     res.end(JSON.stringify({
         errorType: "url"
     }));
 };
 
-module.exports = request_helper;
+module.exports = coap_helper;

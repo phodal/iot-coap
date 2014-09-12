@@ -1,6 +1,6 @@
 const sqlite3	= require( 'sqlite3' ).verbose( )
 const fs		= require( "fs" )
-const _		= require( "underscore" )
+const _			= require( "underscore" )
 const config	= require( "../index" ).config;
 
 function DBHelper( )

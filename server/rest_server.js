@@ -1,7 +1,7 @@
 const fs			  = require('fs')
-	 ,file			  = './iot.json'
-	 ,restify		  = require('restify')
-	 ,restserver	  = restify.createServer();
+const file			  = './iot.json'
+const restify		  = require('restify')
+const restserver	  = restify.createServer();
 
 function rest(){
 

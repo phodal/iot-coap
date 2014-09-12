@@ -1,5 +1,5 @@
 const db_helper = require('./db_helper.js')
-	  ,_			= require("underscore");
+const _			= require("underscore");
 
 function rest_helper(){
 

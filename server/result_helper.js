@@ -1,21 +1,22 @@
 const jstoxml = require('jstoxml');
 
-function resultReturn() {
+function result_helper() {
 
 }
-resultReturn.saveAndCode = function(block, res){
+
+result_helper.saveAndCode = function(block, res){
     res.code = '2.05';
     res.end({});
 };
 
-resultReturn.deleteAndCode = function(block, res){
+result_helper.deleteAndCode = function(block, res){
     res.code = '2.05';
     res.end(JSON.stringify({
         success: "delete"
     }));
 };
 
-resultReturn.jsonAndCode = function(result, res) {
+result_helper.jsonAndCode = function(result, res) {
     if (result.length == 2) {
         res.code = '4.04';
         res.end(JSON.stringify({
@@ -27,8 +28,7 @@ resultReturn.jsonAndCode = function(result, res) {
     }
 };
 
-
-resultReturn.XMLAndCode = function (result, res) {
+result_helper.XMLAndCode = function (result, res) {
     if (result.length == 2) {
         res.code = '4.04';
         res.end(jstoxml.toXML({
@@ -40,4 +40,4 @@ resultReturn.XMLAndCode = function (result, res) {
     }
 };
 
-module.exports = resultReturn;
+module.exports = result_helper;
