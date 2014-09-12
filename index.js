@@ -1,5 +1,5 @@
 const coap             = require('coap');
-const rest            = require('./server/rest_server');
+const rest            = require('./server/http_server');
 const iotcoap         = require('./server/coap_server');
 
 module.exports = iotcoap;

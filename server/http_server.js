@@ -20,7 +20,7 @@ rest.run = function(){
 	});
 
 	function startRESTIOT(config){
-		const rest_helper = require("./rest_helper.js");
+		const http_helper = require("./http_helper.js");
 
 		//
 		// set http parameters
@@ -43,31 +43,31 @@ rest.run = function(){
 		// device id options
 		//
 
-		restserver.post	("/v1.0/id/:id",		rest_helper.post_id);
-		restserver.put	("/v1.0/id/:id",		rest_helper.put_id);
-		restserver.get	("/v1.0/id/:id",		rest_helper.get_id);
-		restserver.del	("/v1.0/id/:id",		rest_helper.del_id);
-		restserver.get	("/v1.0/id",			rest_helper.get_ids);
+		restserver.post	("/v1.0/id/:id",		http_helper.post_id);
+		restserver.put	("/v1.0/id/:id",		http_helper.put_id);
+		restserver.get	("/v1.0/id/:id",		http_helper.get_id);
+		restserver.del	("/v1.0/id/:id",		http_helper.del_id);
+		restserver.get	("/v1.0/id",			http_helper.get_ids);
 
 		//
 		// channel options
 		//
 
-		restserver.post	("/v1.0/id/:id/ch/:ch",	rest_helper.post_ch);
-		restserver.put	("/v1.0/id/:id/ch/:ch",	rest_helper.put_ch);
-		restserver.get	("/v1.0/id/:id/ch/:ch",	rest_helper.get_ch);
-		restserver.del	("/v1.0/id/:id/ch/:ch",	rest_helper.del_ch);
-		restserver.get	("/v1.0/id/:id/ch",		rest_helper.get_chs);
+		restserver.post	("/v1.0/id/:id/ch/:ch",	http_helper.post_ch);
+		restserver.put	("/v1.0/id/:id/ch/:ch",	http_helper.put_ch);
+		restserver.get	("/v1.0/id/:id/ch/:ch",	http_helper.get_ch);
+		restserver.del	("/v1.0/id/:id/ch/:ch",	http_helper.del_ch);
+		restserver.get	("/v1.0/id/:id/ch",		http_helper.get_chs);
 
 		//
 		// timestamp & value options
 		//
 
-		restserver.get	("/v1.0/id/:id/sensor/:sensor",	rest_helper.get_response);
-		restserver.put	(config["rest_post_url"],		rest_helper.post_response);
-		restserver.del	("/v1.0/id/:id/sensor/:sensor",	rest_helper.del_response);
-		restserver.post	(config["rest_post_url"],		rest_helper.post_response);
-		restserver.head	("/v1.0/id/:id/sensor/:sensor",	rest_helper.response);
+		restserver.get	("/v1.0/id/:id/sensor/:sensor",	http_helper.get_response);
+		restserver.put	(config["rest_post_url"],		http_helper.post_response);
+		restserver.del	("/v1.0/id/:id/sensor/:sensor",	http_helper.del_response);
+		restserver.post	(config["rest_post_url"],		http_helper.post_response);
+		restserver.head	("/v1.0/id/:id/sensor/:sensor",	http_helper.response);
 
 		//
 		// server listening

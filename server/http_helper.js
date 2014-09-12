@@ -1,11 +1,11 @@
 const db_helper = require('./db_helper.js')
 const _			= require("underscore");
 
-function rest_helper(){
+function http_helper(){
 
 }
 
-rest_helper.post_id = function (req, res, next) {
+http_helper.post_id = function (req, res, next) {
 	db_helper.post_id(req, function(e){
 		res.send(e);
 		console.log('post_id: ' + e);
@@ -13,7 +13,7 @@ rest_helper.post_id = function (req, res, next) {
 	})
 };
 
-rest_helper.put_id = function (req, res, next) {
+http_helper.put_id = function (req, res, next) {
 	db_helper.put_id(req, function(e){
 		res.send(e);
 		console.log('put_id: ' + e);
@@ -21,7 +21,7 @@ rest_helper.put_id = function (req, res, next) {
 	})
 };
 
-rest_helper.get_id = function (req, res, next) {
+http_helper.get_id = function (req, res, next) {
 	db_helper.get_id(req, function(e){
 		res.send(e);
 		console.log('get_id: ' + e);
@@ -29,7 +29,7 @@ rest_helper.get_id = function (req, res, next) {
 	})
 };
 
-rest_helper.del_id = function (req, res, next) {
+http_helper.del_id = function (req, res, next) {
 	db_helper.del_id(req, function(e){
 		res.send(e);
 		console.log('del_id: ' + e);
@@ -37,7 +37,7 @@ rest_helper.del_id = function (req, res, next) {
 	})
 };
 
-rest_helper.get_ids = function (req, res, next) {
+http_helper.get_ids = function (req, res, next) {
 	db_helper.urlQueryData(req.url, function(e){
 		res.send(e);
 		console.log('get_ids: ' + e);
@@ -45,7 +45,7 @@ rest_helper.get_ids = function (req, res, next) {
 	})
 };
 
-rest_helper.post_ch = function (req, res, next) {
+http_helper.post_ch = function (req, res, next) {
 	db_helper.post_ch(req, function(e){
 		res.send(e);
 		console.log('post_ch: ' + e);
@@ -53,7 +53,7 @@ rest_helper.post_ch = function (req, res, next) {
 	})
 };
 
-rest_helper.put_ch = function (req, res, next) {
+http_helper.put_ch = function (req, res, next) {
 	db_helper.put_ch(req, function(e){
 		res.send(e);
 		console.log('put_ch: ' + e);
@@ -61,7 +61,7 @@ rest_helper.put_ch = function (req, res, next) {
 	})
 };
 
-rest_helper.get_ch = function (req, res, next) {
+http_helper.get_ch = function (req, res, next) {
 	db_helper.get_ch(req, function(e){
 		res.send(e);
 		console.log('get_ch: ' + e);
@@ -69,7 +69,7 @@ rest_helper.get_ch = function (req, res, next) {
 	})
 };
 
-rest_helper.del_ch = function (req, res, next) {
+http_helper.del_ch = function (req, res, next) {
 	db_helper.del_ch(req, function(e){
 		res.send(e);
 		console.log('del_ch: ' + e);
@@ -77,7 +77,7 @@ rest_helper.del_ch = function (req, res, next) {
 	})
 };
 
-rest_helper.get_chs = function (req, res, next) {
+http_helper.get_chs = function (req, res, next) {
 	db_helper.get_chs(req.url, function(e){
 		res.send(e);
 		console.log('get_chs: ' + e);
@@ -85,14 +85,14 @@ rest_helper.get_chs = function (req, res, next) {
 	})
 };
 
-rest_helper.response = function(req, res, next) {
+http_helper.response = function(req, res, next) {
 	db_helper.urlQueryData(req.url, function(e){
 		res.send(JSON.parse(e));
 		next();
 	})
 };
 
-rest_helper.get_response = function (req, res, next) {
+http_helper.get_response = function (req, res, next) {
 	db_helper.urlQueryData(req.url, function(e){
 		res.send(e);
 		console.log('get_response: ' + e);
@@ -100,7 +100,7 @@ rest_helper.get_response = function (req, res, next) {
 	})
 };
 
-rest_helper.post_response = function (req, res, next) {
+http_helper.post_response = function (req, res, next) {
 	var data=[];
 	_.each((req.params), function(key,value){
 		if(typeof key === "string"){
@@ -115,11 +115,11 @@ rest_helper.post_response = function (req, res, next) {
 };
 
 
-rest_helper.del_response = function (req, res, next) {
+http_helper.del_response = function (req, res, next) {
 	db_helper.urlQueryData(req.url, function(e){
 		res.send(JSON.parse(e));
 		next();
 	})
 };
 
-module.exports = rest_helper;
+module.exports = http_helper;
