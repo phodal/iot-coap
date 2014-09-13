@@ -1,4 +1,4 @@
-const qh	= require('./query_helper.js')
+const qh	= require('./query_helper.js');
 const _		= require("underscore");
 
 function coap_helper(){

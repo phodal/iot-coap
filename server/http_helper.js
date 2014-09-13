@@ -1,4 +1,4 @@
-const db_helper = require('./db_helper.js')
+const db_helper = require('./db_helper.js');
 const _			= require("underscore");
 
 function http_helper(){

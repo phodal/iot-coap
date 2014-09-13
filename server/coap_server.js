@@ -1,7 +1,7 @@
-const coap			= require('coap')
-const coapserver	= coap.createServer({})
-const fs			= require('fs')
-const file 			= './iot.json'
+const coap			= require('coap');
+const coapserver	= coap.createServer({});
+const fs			= require('fs');
+const file 			= './iot.json';
 const _				= require('underscore');
 
 function iotcoap(){
@@ -47,7 +47,7 @@ iotcoap.run = function(){
 			return ret;
 		}
 
-		const request_handler = require('./coap_helper.js');
+		const coap_helper = require('./coap_helper.js');
 		coapserver.on('request', function(req, res) {
 			if (url_sanity_check(req.url) == false) {
 				coap_helper.urlErrorRequest(res);

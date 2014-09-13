@@ -150,11 +150,12 @@ db_helper.post_channel = function( req, callback )
 		db.run('insert into ' + config["ch_tbl_name"] +
 			' (id, ch, type, name, desc, unit) VALUES ($id, $ch, $type, $name, $desc, $unit)', {
 			$id: req.url.split( '/' )[3],
+			$id: req.url.split( '/' )[3],
 			$ch: req.url.split( '/' )[5],
 			$type: jsonText.type,
 			$name: jsonText.name,
 			$desc: jsonText.desc,
-			$unit: jsonText.unit,
+			$unit: jsonText.unit
 		});
 
 		callback('ok');
