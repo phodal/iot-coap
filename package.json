@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
     "coap-cli": "0.3.0",
     "sqlite3": "2.2.7",
     "underscore": "1.6.0",
-    "jstoxml": "0.2.2",
-    "restify": "2.8.2"
+    "restify": "2.8.2",
+    "jslint": "0.6.4"
   },
   "keywords": [
     "coap",
@@ -35,9 +35,11 @@
     "sinon": "~1.7.3"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "jslint"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha --bail --reporter spec 2>&1"
+    "test": "./node_modules/.bin/mocha --bail --reporter spec 2>&1",
+    "jslint": "jslint 'lib/*.js'"
   }
 }
