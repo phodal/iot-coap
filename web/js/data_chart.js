@@ -1,6 +1,6 @@
 function drawDataChart() {
 	$.ajax({
-		url: '../v1.0/id/1/sensor/1',
+		url: '../v1.0/id/1/ch/1/dp',
 		type: 'GET',
 		async: true,
 		dataType: 'json',
@@ -11,9 +11,9 @@ function drawDataChart() {
 			for (var i=0; i<dataJSON.length; i++) {
 				dataArray[i] = parseFloat(dataJSON[i].val);
 			}
-			
+
 			$('#container').highcharts('StockChart', {
-				
+
             rangeSelector : {
                 selected : 1,
                 inputEnabled: $('#container').width() > 480
@@ -32,10 +32,9 @@ function drawDataChart() {
             }]
         	});
 		},
-		
 		error: function(data, textStatus)
 		{
-			console.log("Net Error");	
+			console.log("Net Error");
 		}
-	});	
+	});
 };

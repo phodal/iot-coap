@@ -12,14 +12,14 @@ db_helper.initDB = function( )
 	var db = new sqlite3.Database( config["db_name"] );
 
 	db.serialize( function( ) {
-		db.run( 'create table if not exists ' + config["data_tbl_name"] + '(' + config["data_tbl_create_sql"] + ');' );
+		db.run( 'create table if not exists ' + config["dp_tbl_name"] + '(' + config["dp_tbl_create_sql"] + ');' );
 		db.run( 'create table if not exists ' + config["id_tbl_name"] + '(' + config["id_tbl_create_sql"] + ');' );
 		db.run( 'create table if not exists ' + config["ch_tbl_name"] + '(' + config["ch_tbl_create_sql"] + ');' );
 
 		date = new Date();
-		db.run('insert or replace into ' + config["data_tbl_name"] + ' (id, sensor, ts, val) VALUES ($id, $sensor, $ts, $val)', {
+		db.run('insert or replace into ' + config["dp_tbl_name"] + ' (id, ch, ts, val) VALUES ($id, $ch, $ts, $val)', {
 			$id: 1,
-			$sensor: 1,
+			$ch: 1,
 			$ts: date.toISOString(),
 			$val: '25.6'
 		});
@@ -57,7 +57,7 @@ function generateDBKey( this_block )
 	return str;
 }
 
-db_helper.post_id = function( req, callback )
+db_helper.post_device = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
@@ -82,7 +82,7 @@ db_helper.post_id = function( req, callback )
 	db.close( );
 };
 
-db_helper.put_id = function( req, callback )
+db_helper.put_device = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
@@ -107,7 +107,7 @@ db_helper.put_id = function( req, callback )
 	db.close( );
 };
 
-db_helper.get_id = function( req, callback )
+db_helper.get_device = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 	var sql = "select * from " + config["id_tbl_name"] + " where id=" + req.url.split( '/' )[3];
@@ -125,7 +125,7 @@ db_helper.get_id = function( req, callback )
 	} );
 };
 
-db_helper.del_id = function( req, callback )
+db_helper.del_device = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 	var sql = "delete from " + config["id_tbl_name"] + " where id=" + req.url.split( '/' )[3];
@@ -141,7 +141,7 @@ db_helper.del_id = function( req, callback )
 	} );
 };
 
-db_helper.post_ch = function( req, callback )
+db_helper.post_channel = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
@@ -166,7 +166,7 @@ db_helper.post_ch = function( req, callback )
 	db.close( );
 };
 
-db_helper.put_ch = function( req, callback )
+db_helper.put_channel = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
@@ -191,7 +191,7 @@ db_helper.put_ch = function( req, callback )
 	db.close( );
 };
 
-db_helper.get_ch = function( req, callback )
+db_helper.get_channel = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 	var sql = "select * from "
@@ -212,7 +212,7 @@ db_helper.get_ch = function( req, callback )
 	} );
 };
 
-db_helper.del_ch = function( req, callback )
+db_helper.del_channel = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 	var sql = "delete from "
@@ -231,41 +231,96 @@ db_helper.del_ch = function( req, callback )
 	} );
 };
 
-db_helper.syncData = function( block, callback )
+db_helper.post_datapoint = function( req, callback )
 {
-	console.log( block );
 	var db = new sqlite3.Database( config["db_name"] );
 
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('insert or replace into ' + config["dp_tbl_name"] +
+			' (id, ch, ts, val) VALUES ($id, $ch, $ts, $val)', {
+			$id: req.url.split( '/' )[3],
+			$ch: req.url.split( '/' )[5],
+			$ts: req.url.split( '/' )[7],
+			$val: jsonText.val,
+		});
 
-	var str				   = generateDBKey( config["key"] );
-	var string			   = generateDBKey( block );
-	var insert_db_string   = "insert or replace into " + config["data_tbl_name"] + " (" + str + ") VALUES (" + string + ");";
-	console.log( insert_db_string );
-	db.all( insert_db_string, function( err )
-			{
-				db.close( );
-			} );
-	callback( );
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
 };
 
-db_helper.deleteData = function( url, callback )
+db_helper.put_datapoint = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
 
-	console.log( "DELETE * FROM	" + config["data_tbl_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2] );
-	var insert_db_string = "DELETE * FROM  " + config["data_tbl_name"] + "  where " + url.split( '/' )[1] + "=" + url.split( '/' )[2];
-	console.log( insert_db_string );
-	db.all( insert_db_string, function( err )
-			{
-				db.close( );
-			} );
-	callback( );
+	try {
+		var jsonText = JSON.parse(req.body);
+		db.run('replace into ' + config["dp_tbl_name"]
+			+ ' (id, ch, ts, val) VALUES ($id, $ch, $ts, $val)', {
+			$id: req.url.split( '/' )[3],
+			$ch: req.url.split( '/' )[5],
+			$ts: req.url.split( '/' )[7],
+			$val: jsonText.val,
+		});
+
+		callback('ok');
+	}
+	catch (e) {
+		callback(e);
+	}
+
+	db.close( );
 };
 
-db_helper.urlQueryData = function( url, callback )
+db_helper.get_datapoint = function( req, callback )
 {
 	var db = new sqlite3.Database( config["db_name"] );
-	var sql = "SELECT * FROM " + config["data_tbl_name"] + " where id=" + url.split( '/' )[3] + " and sensor=" + url.split( '/' )[5];
+	var sql = "SELECT * FROM " + config["dp_tbl_name"]
+		+ " where id=" + req.url.split( '/' )[3]
+		+ " and ch=" + req.url.split( '/' )[5]
+		+ " and ts='" + req.url.split( '/' )[7] + "'";
+
+	db.get (sql, function(err, rows) {
+		db.close( );
+		try {
+			var memberfilter = new Array();
+			memberfilter[0] = "ts";
+			memberfilter[1] = "val";
+			jsonText = JSON.stringify(rows, memberfilter);
+
+			callback(jsonText);
+		}
+		catch( e ) {
+			callback( err );
+		}
+	});
+};
+
+db_helper.del_datapoint = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "delete from " + config["dp_tbl_name"]
+		+ " where id=" + req.url.split( '/' )[3]
+		+ " and ch=" + req.url.split( '/' )[5]
+		+ " and ts='" + req.url.split( '/' )[7] + "'";
+
+	db.run( sql, function( err ) {
+		db.close( );
+		callback( err );
+	} );
+};
+
+db_helper.get_datapoints = function( req, callback )
+{
+	var db = new sqlite3.Database( config["db_name"] );
+	var sql = "SELECT * FROM " + config["dp_tbl_name"]
+		+ " where id=" + req.url.split( '/' )[3]
+		+ " and ch=" + req.url.split( '/' )[5];
 
 	db.all (sql, function(err, rows) {
 		db.close( );
@@ -280,7 +335,7 @@ db_helper.urlQueryData = function( url, callback )
 		catch( e ) {
 			callback( err );
 		}
-	} );
+	});
 };
 
 module.exports = db_helper;

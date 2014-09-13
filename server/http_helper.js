@@ -5,119 +5,123 @@ function http_helper(){
 
 }
 
-http_helper.post_id = function (req, res, next) {
-	db_helper.post_id(req, function(e){
+http_helper.post_device = function (req, res, next) {
+	db_helper.post_device(req, function(e){
 		res.send(e);
-		console.log('post_id: ' + e);
+		console.log('post_device: ' + e);
 		next();
 	})
 };
 
-http_helper.put_id = function (req, res, next) {
-	db_helper.put_id(req, function(e){
+http_helper.put_device = function (req, res, next) {
+	db_helper.put_device(req, function(e){
 		res.send(e);
-		console.log('put_id: ' + e);
+		console.log('put_device: ' + e);
 		next();
 	})
 };
 
-http_helper.get_id = function (req, res, next) {
-	db_helper.get_id(req, function(e){
+http_helper.get_device = function (req, res, next) {
+	db_helper.get_device(req, function(e){
 		res.send(e);
-		console.log('get_id: ' + e);
+		console.log('get_device: ' + e);
 		next();
 	})
 };
 
-http_helper.del_id = function (req, res, next) {
-	db_helper.del_id(req, function(e){
+http_helper.del_device = function (req, res, next) {
+	db_helper.del_device(req, function(e){
 		res.send(e);
-		console.log('del_id: ' + e);
+		console.log('del_device: ' + e);
 		next();
 	})
 };
 
-http_helper.get_ids = function (req, res, next) {
-	db_helper.urlQueryData(req.url, function(e){
+http_helper.get_devices = function (req, res, next) {
+	db_helper.urlQueryData(req, function(e){
 		res.send(e);
-		console.log('get_ids: ' + e);
+		console.log('get_devices: ' + e);
 		next();
 	})
 };
 
-http_helper.post_ch = function (req, res, next) {
-	db_helper.post_ch(req, function(e){
+http_helper.post_channel = function (req, res, next) {
+	db_helper.post_channel(req, function(e){
 		res.send(e);
-		console.log('post_ch: ' + e);
+		console.log('post_channel: ' + e);
 		next();
 	})
 };
 
-http_helper.put_ch = function (req, res, next) {
-	db_helper.put_ch(req, function(e){
+http_helper.put_channel = function (req, res, next) {
+	db_helper.put_channel(req, function(e){
 		res.send(e);
-		console.log('put_ch: ' + e);
+		console.log('put_channel: ' + e);
 		next();
 	})
 };
 
-http_helper.get_ch = function (req, res, next) {
-	db_helper.get_ch(req, function(e){
+http_helper.get_channel = function (req, res, next) {
+	db_helper.get_channel(req, function(e){
 		res.send(e);
-		console.log('get_ch: ' + e);
+		console.log('get_channel: ' + e);
 		next();
 	})
 };
 
-http_helper.del_ch = function (req, res, next) {
-	db_helper.del_ch(req, function(e){
+http_helper.del_channel = function (req, res, next) {
+	db_helper.del_channel(req, function(e){
 		res.send(e);
-		console.log('del_ch: ' + e);
+		console.log('del_channel: ' + e);
 		next();
 	})
 };
 
-http_helper.get_chs = function (req, res, next) {
-	db_helper.get_chs(req.url, function(e){
+http_helper.get_channels = function (req, res, next) {
+	db_helper.get_channels(req, function(e){
 		res.send(e);
-		console.log('get_chs: ' + e);
+		console.log('get_channels: ' + e);
 		next();
 	})
 };
 
-http_helper.response = function(req, res, next) {
-	db_helper.urlQueryData(req.url, function(e){
-		res.send(JSON.parse(e));
-		next();
-	})
-};
-
-http_helper.get_response = function (req, res, next) {
-	db_helper.urlQueryData(req.url, function(e){
+http_helper.post_datapoint = function(req, res, next) {
+	db_helper.post_datapoint(req, function(e){
 		res.send(e);
-		console.log('get_response: ' + e);
+		console.log('post_datapoint: ' + e);
 		next();
 	})
 };
 
-http_helper.post_response = function (req, res, next) {
-	var data=[];
-	_.each((req.params), function(key,value){
-		if(typeof key === "string"){
-			key = "'" + key + "'";
-		}
-		data.push(key);
-	});
-	db_helper.syncData(data, function(e){
-		res.send({});
+http_helper.put_datapoint = function (req, res, next) {
+	db_helper.put_datapoint(req, function(e){
+		res.send(e);
+		console.log('put_datapoint: ' + e);
+		next();
+	})
+};
+
+http_helper.get_datapoint = function (req, res, next) {
+	db_helper.get_datapoint(req, function(e){
+		res.send(e);
+		console.log('get_datapoint: ' + e);
 		next();
 	})
 };
 
 
-http_helper.del_response = function (req, res, next) {
-	db_helper.urlQueryData(req.url, function(e){
-		res.send(JSON.parse(e));
+http_helper.del_datapoint = function (req, res, next) {
+	db_helper.del_datapoint(req, function(e){
+		res.send(e);
+		console.log('del_datapoint: ' + e);
+		next();
+	})
+};
+
+http_helper.get_datapoints = function (req, res, next) {
+	db_helper.get_datapoints(req, function(e){
+		res.send(e);
+		console.log('get_datapoints: ' + e);
 		next();
 	})
 };

@@ -1,19 +1,10 @@
 {
     "db_name": "iot.db",
-    "data_tbl_name": "data_tbl",
-    "data_tbl_create_sql": "idx integer primary key autoincrement, id integer ,sensor integer, ts datetime, val text",
 	"id_tbl_name": "id_tbl",
-	"id_tbl_create_sql": "id integer primary key, name text, desc text, local text, latitude real, longitude real",
+	"id_tbl_create_sql": "id integer, name text, desc text, local text, latitude real, longitude real, primary key(id)",
 	"ch_tbl_name": "ch_tbl",
 	"ch_tbl_create_sql": "id integer, ch integer, type text, name text, desc text, unit text, primary key(id, ch)",
-
-    "key":[
-        "id",
-        "value",
-        "sensors1",
-        "sensors2"
-    ],
-
-    "rest_post_url": "/",
+	"dp_tbl_name": "dp_tbl",
+    "dp_tbl_create_sql": "id integer ,ch integer, ts datetime, val text, primary key(id, ch, ts)",
     "rest_port": 80
 }
