@@ -19,19 +19,9 @@ query_helper.deleteData = function(req, res){
     });
 };
 
-query_helper.postXML = function(req, res) {
-
-};
-
 query_helper.returnJSON = function(req, res) {
     DBHelper.get_datapoints(req.url, function (result) {
         returnResult.jsonAndCode(result, res);
-    });
-};
-
-query_helper.returnXML = function(req, res) {
-    DBHelper.get_datapoints(req.url, function (result) {
-        returnResult.XMLAndCode(result, res);
     });
 };
 

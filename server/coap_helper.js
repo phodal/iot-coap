@@ -20,9 +20,6 @@ coap_helper.syncHandler = function (req, res) {
         case "application/json":
             qh.syncJSON(req, res, parse_buffer(req));
             break;
-        case "application/xml":
-            qh.postXML(req, res, parse_buffer(req));
-            break;
     }
 };
 
@@ -30,9 +27,6 @@ coap_helper.getHandler = function(req, res) {
     switch (req.headers['Accept']) {
         case "application/json":
             qh.returnJSON(req, res);
-            break;
-        case "application/xml":
-            qh.returnXML(req, res);
             break;
     }
 };
