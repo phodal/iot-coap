@@ -180,7 +180,7 @@ db_helper.put_channel = function( req, callback )
 			$type: jsonText.type,
 			$name: jsonText.name,
 			$desc: jsonText.desc,
-			$unit: jsonText.unit,
+			$unit: jsonText.unit
 		});
 
 		callback('ok');
@@ -243,7 +243,7 @@ db_helper.post_datapoint = function( req, callback )
 			$id: req.url.split( '/' )[3],
 			$ch: req.url.split( '/' )[5],
 			$ts: req.url.split( '/' )[7],
-			$val: jsonText.val,
+			$val: jsonText.val
 		});
 
 		callback('ok');
@@ -266,7 +266,7 @@ db_helper.put_datapoint = function( req, callback )
 			$id: req.url.split( '/' )[3],
 			$ch: req.url.split( '/' )[5],
 			$ts: req.url.split( '/' )[7],
-			$val: jsonText.val,
+			$val: jsonText.val
 		});
 
 		callback('ok');
