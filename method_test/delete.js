@@ -1,7 +1,7 @@
 const coap      = require('coap')
       ,request  = coap.request
       ,bl       = require('bl')
-      ,req = request({hostname: 'localhost',port:5683,pathname: '/id/3',method: 'DELETE'});
+      ,req = request({hostname: 'localhost',port:5683,pathname: '/id/10',method: 'DELETE'});
 
 req.setHeader("Accept", "application/json");
 

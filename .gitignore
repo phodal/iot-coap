@@ -3,4 +3,3 @@ server/node_modules/*
 .idea/*
 npm-debug.log
 newrelic.js
-iot.db
