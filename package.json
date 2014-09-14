@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
