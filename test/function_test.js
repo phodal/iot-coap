@@ -1,11 +1,30 @@
-var iotcoap             = require('../lib/coap_server');
+var iotcoap        = require('../index');
+var http           = require('http');
+var bl             = require('bl');
 
-describe('contact page', function() {
+describe('function test', function () {
     before(function() {
-        this.server = iotcoap;
+        this.server = iotcoap.rest;
+        this.server.run();
     });
 
-    it('should show contact a form');
-    it('should refuse empty submissions');
+    it('should return 200 when start rest server', function (done) {
+        http.get('http://localhost:8848/', function (res) {
+            assert(200, res.statusCode);
+            done();
+        });
+    });
+
+    it('should return 200 when start rest server', function (done) {
+        http.get('http://localhost:8848/id/1', function (res) {
+            res.pipe(bl(function(err, data) {
+                var json = JSON.parse(data);
+                console.log(json);
+                assert("Cannot read property 'db_name' of undefined", json);
+            }));
+            done();
+        });
+    });
+
 
 });
