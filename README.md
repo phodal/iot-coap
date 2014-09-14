@@ -29,14 +29,14 @@
     const iotcoap         = require('iot-coap');
 
     iotcoap.run();
-    iotcoap.rest.run(); //运行REST
+    iotcoap.rest.run();
 
-创建iot.json
+创建iot.js
 
-    {
+    exports.config  = {
         "db_name": "iot.db",
         "table_name": "basic",
-        "key":[
+        "keys":[
             "id",
             "value",
             "sensors1",
@@ -51,7 +51,7 @@
         "rest_url": "/id/:id",
         "rest_post_url": "/",
         "rest_port": 8848
-    }
+    };
 
 接着运行
 
