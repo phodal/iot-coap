@@ -3,6 +3,7 @@ const coap = require('coap')
     ,bl   = require('bl');
 
 describe('coap function test', function () {
+
     before(function() {
 
     });
