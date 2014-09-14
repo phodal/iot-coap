@@ -1,7 +1,7 @@
-{
+exports.config  = {
     "db_name": "iot.db",
     "table_name": "basic",
-    "key":[
+    "keys":[
         "id",
         "value",
         "sensors1",
@@ -16,4 +16,4 @@
     "rest_url": "/id/:id",
     "rest_post_url": "/",
     "rest_port": 8848
-}
+};
