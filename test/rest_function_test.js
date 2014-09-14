@@ -2,10 +2,9 @@ var iotcoap        = require('../index');
 var http           = require('http');
 var bl             = require('bl');
 
-describe('function test', function () {
+describe('rest function test', function () {
     before(function() {
-        this.server = iotcoap.rest;
-        this.server.run();
+
     });
 
     it('should return 200 when start rest server', function (done) {
@@ -19,12 +18,9 @@ describe('function test', function () {
         http.get('http://localhost:8848/id/1', function (res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data);
-                console.log(json);
-                assert("Cannot read property 'db_name' of undefined", json);
+                assert(1, json.id);
             }));
             done();
         });
     });
-
-
 });
