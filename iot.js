@@ -1,4 +1,4 @@
-var config = {
+exports.config  = {
     "db_name": "iot.db",
     "table_name": "basic",
     "keys":[
@@ -17,5 +17,3 @@ var config = {
     "rest_post_url": "/",
     "rest_port": 8848
 };
-
-module.exports.config = config;
