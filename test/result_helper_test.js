@@ -21,4 +21,20 @@ describe('query data status code test', function() {
         done();
     });
 
+    it('should return 2.05 when delete result', function(done) {
+        var request = "";
+        resultReturn.deleteAndCode(request, res);
+        var result = res.code;
+        expect(result).to.eql("2.05");
+        done();
+    });
+
+    it('should return 2.05 when save result', function(done) {
+        var request = "";
+        resultReturn.saveAndCode(request, res);
+        var result = res.code;
+        expect(result).to.eql("2.05");
+        done();
+
+    });
 });
