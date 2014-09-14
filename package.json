@@ -32,7 +32,8 @@
     "chai": "~1.9.1",
     "mocha": "~1.21.4",
     "timekeeper": "0.0.4",
-    "sinon": "~1.7.3"
+    "sinon": "~1.7.3",
+    "zombie": "2.0.0-alpha31"
   },
   "pre-commit": [
     "test",
