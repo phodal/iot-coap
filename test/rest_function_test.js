@@ -1,4 +1,3 @@
-var iotcoap        = require('../index');
 var http           = require('http');
 var bl             = require('bl');
 
