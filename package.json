@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
@@ -12,8 +12,7 @@
     "coap-cli": "0.3.0",
     "sqlite3": "2.2.7",
     "underscore": "1.6.0",
-    "restify": "2.8.2",
-    "jslint": "0.6.4"
+    "restify": "2.8.2"
   },
   "keywords": [
     "coap",
@@ -33,7 +32,8 @@
     "mocha": "~1.21.4",
     "timekeeper": "0.0.4",
     "sinon": "~1.7.3",
-    "zombie": "2.0.0-alpha31"
+    "zombie": "2.0.0-alpha31",
+    "jslint": "0.6.4"
   },
   "pre-commit": [
     "test",
