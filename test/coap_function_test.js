@@ -9,8 +9,8 @@ describe('coap function test', function () {
     });
 
     it('should return 20 when coap get id = 1', function (done) {
-        const url        = require('url').parse('coap://localhost/id/1/')
-              ,req        = request(url);
+        const url   = require('url').parse('coap://localhost/id/1/')
+              ,req  = request(url);
 
         var result = {
             id: 1,
