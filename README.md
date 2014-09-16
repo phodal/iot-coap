@@ -87,6 +87,15 @@
 
     http://iot-coap.phodal.com:8896
 
+##配置开发环境
+
+在代码提交之前会跑测试、jslint语法检查，相关机制可以查看这篇文章[nodejs jslint](https://www.phodal.com/blog/nodejs-add-jslint-with-pre-commit/)
+
+这时需要保证的是pre-commit能生效，因而需要有
+
+1. 安装有Nodejs的OS
+2. clone完代码后执行npm install
+
 ##交流
 
 QQ群：348100589
