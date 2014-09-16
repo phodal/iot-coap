@@ -40,7 +40,7 @@
     "jslint"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha --bail --reporter spec 2>&1",
+    "test": "./node_modules/.bin/mocha --growl --colors --reporter spec 2>&1",
     "jslint": "jslint 'lib/*.js' 'index.js' "
   }
 }
