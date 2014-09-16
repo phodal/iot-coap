@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Mini IoT CoAP Version",
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "jslint"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha --growl --colors --reporter spec 2>&1",
+    "test": "./node_modules/.bin/mocha --reporter spec 2>&1",
     "jslint": "jslint 'lib/*.js' 'index.js' "
   }
 }
