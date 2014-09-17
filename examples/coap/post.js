@@ -5,7 +5,6 @@ const coap     = require('coap')
 
 req.setHeader("Accept", "application/json");
 req.setOption('Block2',  [new Buffer('3'),new Buffer("'must'"), new Buffer('23'), new Buffer('12')]);
-
 req.on('response', function(res) {
     res.pipe(bl(function(err, data) {
         console.log(data);

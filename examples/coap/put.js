@@ -8,7 +8,8 @@ req.setOption('Block2',  [new Buffer('3'),new Buffer("'phodal'"), new Buffer('13
 
 req.on('response', function(res) {
     res.pipe(bl(function(err, data) {
-        console.log(data);
+        var json = JSON.parse(data);
+        console.log(json);
         process.exit(0);
     }));
 
