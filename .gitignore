@@ -4,3 +4,4 @@ server/node_modules/*
 newrelic.js
 iot.db
 node_modules
+/.idea

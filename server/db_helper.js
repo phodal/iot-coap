@@ -1,7 +1,7 @@
 const sqlite3	= require( 'sqlite3' ).verbose( )
 const fs		= require( "fs" )
-const _			= require( "underscore" )
-const config	= require( "../index" ).config;
+const _		= require( "underscore" )
+const config	= require( "../index.js" ).config;
 
 function db_helper( )
 {

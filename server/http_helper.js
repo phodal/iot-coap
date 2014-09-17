@@ -109,7 +109,6 @@ http_helper.get_datapoint = function (req, res, next) {
 	})
 };
 
-
 http_helper.del_datapoint = function (req, res, next) {
 	db_helper.del_datapoint(req, function(e){
 		res.send(e);

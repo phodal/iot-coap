@@ -4,7 +4,6 @@ const DBHelper      = require('./db_helper.js')
 DBHelper.initDB();
 
 function query_helper() {
-
 }
 
 query_helper.syncJSON = function(req, res, block) {

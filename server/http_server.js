@@ -39,7 +39,7 @@ rest.run = function(){
 
 		// device id options
 
-		restserver.post	("/v1.0/id/:id",				http_helper.post_device);
+		restserver.post("/v1.0/id/:id",				http_helper.post_device);
 		restserver.put	("/v1.0/id/:id",				http_helper.put_device);
 		restserver.get	("/v1.0/id/:id",				http_helper.get_device);
 		restserver.del	("/v1.0/id/:id",				http_helper.del_device);
@@ -47,7 +47,7 @@ rest.run = function(){
 
 		// channel options
 
-		restserver.post	("/v1.0/id/:id/ch/:ch",			http_helper.post_channel);
+		restserver.post("/v1.0/id/:id/ch/:ch",			http_helper.post_channel);
 		restserver.put	("/v1.0/id/:id/ch/:ch",			http_helper.put_channel);
 		restserver.get	("/v1.0/id/:id/ch/:ch",			http_helper.get_channel);
 		restserver.del	("/v1.0/id/:id/ch/:ch",			http_helper.del_channel);
@@ -55,7 +55,7 @@ rest.run = function(){
 
 		// timestamp & value options
 
-		restserver.post	("/v1.0/id/:id/ch/:ch/dp/:ts",	http_helper.post_datapoint);
+		restserver.post("/v1.0/id/:id/ch/:ch/dp/:ts",	http_helper.post_datapoint);
 		restserver.put	("/v1.0/id/:id/ch/:ch/dp/:ts",	http_helper.put_datapoint);
 		restserver.get	("/v1.0/id/:id/ch/:ch/dp/:ts",	http_helper.get_datapoint);
 		restserver.del	("/v1.0/id/:id/ch/:ch/dp/:ts",	http_helper.del_datapoint);

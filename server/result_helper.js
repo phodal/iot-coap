@@ -1,7 +1,6 @@
 const jstoxml = require('jstoxml');
 
 function result_helper() {
-
 }
 
 result_helper.saveAndCode = function(block, res){

@@ -1,5 +1,5 @@
 const qh	= require('./query_helper.js');
-const _		= require("underscore");
+const _	= require("underscore");
 
 function coap_helper(){
 
@@ -52,5 +52,20 @@ coap_helper.urlErrorRequest = function(res) {
         errorType: "url"
     }));
 };
+coap_helper.post_device = function(req, res){console.log('post_device');};
+coap_helper.put_device = function(req, res){console.log('put_device');};
+coap_helper.get_device = function(req, res){console.log('get_device');};
+coap_helper.del_device = function(req, res){console.log('del_device');};
+coap_helper.get_devices = function(req, res){console.log('get_devices');};
+coap_helper.post_channel = function(req, res){console.log('post_channel');};
+coap_helper.put_channel = function(req, res){console.log('put_channel');};
+coap_helper.get_channel = function(req, res){console.log('get_channel');};
+coap_helper.del_channel = function(req, res){console.log('del_channel');};
+coap_helper.get_channels = function(req, res){console.log('get_channels');};
+coap_helper.post_datapoint = function(req, res){console.log('post_datapoint');};
+coap_helper.put_datapoint = function(req, res){console.log('put_datapoint');};
+coap_helper.get_datapoint = function(req, res){console.log('get_datapoint');};
+coap_helper.del_datapoint = function(req, res){console.log('del_datapoint');};
+coap_helper.get_datapoints = function(req, res){console.log('get_datapoints');};
 
 module.exports = coap_helper;
