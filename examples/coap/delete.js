@@ -7,7 +7,8 @@ req.setHeader("Accept", "application/json");
 
 req.on('response', function(res) {
     res.pipe(bl(function(err, data) {
-        console.log(data);
+        var json = JSON.parse(data);
+        console.log(json);
         process.exit(0);
     }));
 
