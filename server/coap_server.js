@@ -16,36 +16,10 @@ iotcoap.run = function(){
 		var config = JSON.parse(data);
 		module.exports.config = config;
 
-		startIOT(config);
+		startIOT();
 	});
 
-	 function startIOT(config){
-
-		function url_sanity_check(url) {
-
-			var ret = true;
-			var str = url.split('/');
-			_.each(config["key"], function (array, index) {
-				if (index >= str.length) {
-					return;
-				}
-
-				if (index > 0 && str[index]  == '') {
-					ret = false;
-					return;
-				}
-
-				if (config["key"][index]) {
-					if(str[index] !== config["key"][index] ){
-						ret = false;
-						return;
-					}
-				}
-			});
-
-			return ret;
-		}
-
+	 function startIOT(){
          const coap_helper = require('./coap_helper.js');
          const route_helper = require('./route_helper.js');
 
