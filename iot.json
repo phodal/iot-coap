@@ -1,0 +1,10 @@
+{
+    "db_name": "iot.db",
+	"id_tbl_name": "id_tbl",
+	"id_tbl_create_sql": "id integer, name text, desc text, local text, latitude real, longitude real, primary key(id)",
+	"ch_tbl_name": "ch_tbl",
+	"ch_tbl_create_sql": "id integer, ch integer, type text, name text, desc text, unit text, primary key(id, ch)",
+	"dp_tbl_name": "dp_tbl",
+    "dp_tbl_create_sql": "id integer ,ch integer, ts datetime, val text, primary key(id, ch, ts)",
+    "rest_port": 80
+}
