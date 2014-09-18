@@ -1,71 +1,114 @@
-const qh	= require('./query_helper.js');
-const _	= require("underscore");
+const db_helper = require('./db_helper.js');
+const result_helper = require('./result_helper.js');
+
+db_helper.initDB();
 
 function coap_helper(){
-
 }
 
-function parse_buffer(req) {
-    var block_save = [];
-    _.each(req.options, function (e) {
-        if (e["name"] === "Block2") {
-            block_save.push(_.values(e).toString().split(',')[1]);
-        }
-    });
-    return block_save;
-}
-
-coap_helper.syncHandler = function (req, res) {
-    switch (req.headers['Accept']) {
-        case "application/json":
-            qh.syncJSON(req, res, parse_buffer(req));
-            break;
-    }
+coap_helper.post_device = function (req, res) {
+    db_helper.post_device(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('post_device: ' + e);
+    })
 };
 
-coap_helper.getHandler = function(req, res) {
-    switch (req.headers['Accept']) {
-        case "application/json":
-            qh.returnJSON(req, res);
-            break;
-    }
+coap_helper.put_device = function (req, res) {
+    db_helper.put_device(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('put_device: ' + e);
+    })
 };
 
-coap_helper.deleteHandler = function(req, res){
-    qh.deleteData(req, res);
+coap_helper.get_device = function (req, res) {
+    db_helper.get_device(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_device: ' + e);
+    })
 };
 
-coap_helper.methodNotSupport = function(res, req) {
-    res.end(JSON.stringify({
-        message: req.method + " is no support now"
-    }));
+coap_helper.del_device = function (req, res) {
+    db_helper.del_device(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('del_device: ' + e);
+    })
 };
 
-coap_helper.errorRequest = function(res) {
-    res.end(JSON.stringify({
-        error: "sorry"
-    }));
+coap_helper.get_devices = function (req, res) {
+    db_helper.urlQueryData(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_devices: ' + e);
+    })
 };
 
-coap_helper.urlErrorRequest = function(res) {
-    res.end(JSON.stringify({
-        errorType: "url"
-    }));
+coap_helper.post_channel = function (req, res) {
+    db_helper.post_channel(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('post_channel: ' + e);
+    })
 };
-coap_helper.post_device = function(req, res){console.log('post_device');};
-coap_helper.put_device = function(req, res){console.log('put_device');};
-coap_helper.get_device = function(req, res){console.log('get_device');};
-coap_helper.del_device = function(req, res){console.log('del_device');};
-coap_helper.get_devices = function(req, res){console.log('get_devices');};
-coap_helper.post_channel = function(req, res){console.log('post_channel');};
-coap_helper.put_channel = function(req, res){console.log('put_channel');};
-coap_helper.get_channel = function(req, res){console.log('get_channel');};
-coap_helper.del_channel = function(req, res){console.log('del_channel');};
-coap_helper.get_channels = function(req, res){console.log('get_channels');};
-coap_helper.post_datapoint = function(req, res){console.log('post_datapoint');};
-coap_helper.put_datapoint = function(req, res){console.log('put_datapoint');};
-coap_helper.get_datapoint = function(req, res){console.log('get_datapoint');};
-coap_helper.del_datapoint = function(req, res){console.log('del_datapoint');};
-coap_helper.get_datapoints = function(req, res){console.log('get_datapoints');};
+
+coap_helper.put_channel = function (req, res) {
+    db_helper.put_channel(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('put_channel: ' + e);
+    })
+};
+
+coap_helper.get_channel = function (req, res) {
+    db_helper.get_channel(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_channel: ' + e);
+    })
+};
+
+coap_helper.del_channel = function (req, res) {
+    db_helper.del_channel(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('del_channel: ' + e);
+    })
+};
+
+coap_helper.get_channels = function (req, res) {
+    db_helper.get_channels(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_channels: ' + e);
+    })
+};
+
+coap_helper.post_datapoint = function(req, res) {
+    db_helper.post_datapoint(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('post_datapoint: ' + e);
+    })
+};
+
+coap_helper.put_datapoint = function (req, res) {
+    db_helper.put_datapoint(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('put_datapoint: ' + e);
+    })
+};
+
+coap_helper.get_datapoint = function (req, res, next) {
+    db_helper.get_datapoint(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_datapoint: ' + e);
+    })
+};
+
+coap_helper.del_datapoint = function (req, res, next) {
+    db_helper.del_datapoint(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('del_datapoint: ' + e);
+    })
+};
+
+coap_helper.get_datapoints = function (req, res) {
+    db_helper.get_datapoints(req, function(e){
+        result_helper.jsonAndCode(e, res);
+        console.log('get_datapoints: ' + e);
+    })
+};
 
 module.exports = coap_helper;
