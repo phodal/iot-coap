@@ -117,7 +117,11 @@ QQ群：348100589
 [构建基于CoAP SQLite Nodejs的物联网之数据库][db]
 
 
-## Liscense
+##IDE
+
+感谢[JetBrains](http://www.jetbrains.com)为我们提供了数据不限的WebStorm的License。
+
+## License
 
 © 2014 [Phodal Huang](http://www.phodal.com). This code is distributed under the MIT license.
 
