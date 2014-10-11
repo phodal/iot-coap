@@ -11,6 +11,7 @@
     "URIjs": "1.14.0",
     "bl": "~0.9.0",
     "coap-cli": "0.3.0",
+    "mongodb": "~2.0",
     "sqlite3": "2.2.7",
     "underscore": "1.6.0",
     "restify": "2.8.2"
