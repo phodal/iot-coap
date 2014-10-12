@@ -13,12 +13,12 @@ describe('rest function test', function () {
         });
     });
 
-    it('should return id value when get id = 1 ', function (done) {
-        http.get('http://localhost:8848/id/1', function (res) {
+    it('should return id value when get id = 2 ', function (done) {
+        http.get('http://localhost:8848/id/2', function (res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data)[0];
                 console.log(json.id);
-                if(json.id === 1){
+                if(json.id === 2){
                     done();
                 }
             }));
@@ -43,6 +43,7 @@ describe('rest function test', function () {
             }
         };
 
+        console.log("waiting");
         var post_req = http.request(post_options, function(res) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
