@@ -53,6 +53,7 @@ describe('coap function test', function () {
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data)[0];
+                console.log(json);
                 if(json.sensors2 === 12){
                     done();
                 }
@@ -80,8 +81,8 @@ describe('coap function test', function () {
         getReqAfterDelete.setHeader("Accept", "application/json");
         getReqAfterDelete.on('response', function(res) {
             res.pipe(bl(function(err, data) {
-                var json = JSON.parse(data)[0];
-                if(json === undefined){
+                var json = JSON.parse(data);
+                if(json === undefined || json['error'] === "Not Found this id"){
                     done();
                 }
             }));
