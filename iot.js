@@ -1,6 +1,7 @@
 exports.config  = {
     "db_name": "iot.db",
     "mongodb_name": "iot",
+    "mongodb_documents": "iot",
     "db": "mongodb",
     "table_name": "basic",
     "keys":[

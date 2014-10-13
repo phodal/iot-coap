@@ -52,7 +52,6 @@ describe('coap function test', function () {
         getReqAfterPost.setHeader("Accept", "application/json");
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
-                console.log(JSON.parse(data));
                 var json = JSON.parse(data)[0];
                 if(json.sensors2 === 12){
                     done();
