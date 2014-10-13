@@ -13,6 +13,7 @@ describe('rest function test', function () {
         });
     });
 
+    console.log("waiting");
     it('should return id value when get id = 2 ', function (done) {
         http.get('http://localhost:8848/id/2', function (res) {
             res.pipe(bl(function(err, data) {
