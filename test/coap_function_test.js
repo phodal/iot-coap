@@ -45,7 +45,6 @@ describe('coap function test', function () {
         });
         post_req.end();
 
-        console.log("waiting");
         const url2 = require('url').parse('coap://localhost/id/5/')
             ,getReqAfterPost  = coap.request(url2);
 
@@ -53,6 +52,7 @@ describe('coap function test', function () {
         getReqAfterPost.setHeader("Accept", "application/json");
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
+                console.log(JSON.parse(data));
                 var json = JSON.parse(data)[0];
                 if(json.sensors2 === 12){
                     done();

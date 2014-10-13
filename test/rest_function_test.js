@@ -16,6 +16,7 @@ describe('rest function test', function () {
     it('should return id value when get id = 2 ', function (done) {
         http.get('http://localhost:8848/id/2', function (res) {
             res.pipe(bl(function(err, data) {
+                console.log(JSON.parse(data));
                 var json = JSON.parse(data)[0];
                 console.log(json.id);
                 if(json.id === 2){
