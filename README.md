@@ -12,9 +12,10 @@
 
 ##主要依赖库
 
- - RESTify
+ - [RESTify](https://github.com/mcavage/node-restify)
  - [Node-CoAP](https://github.com/mcollina/node-coap)
- - Node Sqlite3
+ - [Node Sqlite3](https://github.com/mapbox/node-sqlite3)
+ - [MongoDB](https://github.com/mongodb/node-mongodb-native) 
 
 ##install
 
@@ -24,17 +25,22 @@
 
 新建一个index.js
 
-``注意``：如果已经存在一个index.js文件，请将下面内容添加到文件末尾
+``注意``: 如果已经存在一个index.js文件，请将下面内容添加到文件末尾
 
     const iotcoap         = require('iot-coap');
 
     iotcoap.run();
     iotcoap.rest.run();
 
+``注意``:在db配置可以选择mongodb和sqlite3，替换所需要的数据库即可。
+
 创建iot.js
 
     exports.config  = {
         "db_name": "iot.db",
+        "mongodb_name": "iot",
+        "mongodb_documents": "iot",
+        "db": "mongodb",
         "table_name": "basic",
         "keys":[
             "id",
@@ -43,6 +49,20 @@
             "sensors2"
         ],
         "db_table": "id integer primary key, value text, sensors1 float, sensors2 float",
+        "mongodb_init":[
+            {
+                id: 1,
+                value: "is id 1",
+                sensors1: 19,
+                sensors2: 20
+            },
+            {
+                id: 2,
+                value: "is id 2",
+                sensors1: 20,
+                sensors2: 21
+            }
+        ],
         "init_table":[
             "insert or replace into basic (id,value,sensors1,sensors2) VALUES (1, 'is id 1', 19, 20);",
             "insert or replace into basic (id,value,sensors1,sensors2) VALUES (2, 'is id 2', 20, 21);"
