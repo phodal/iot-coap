@@ -13,19 +13,6 @@ describe('rest function test', function () {
         });
     });
 
-    console.log("waiting");
-    it('should return id value when get id = 2 ', function (done) {
-        http.get('http://localhost:8848/id/2', function (res) {
-            res.pipe(bl(function(err, data) {
-                var json = JSON.parse(data)[0];
-                console.log(json.id);
-                if(json.id === 2){
-                    done();
-                }
-            }));
-        });
-    });
-
     it('should return sensors 20 when post data & id = 10', function (done) {
         var post_data = JSON.stringify({
             id: 10,
