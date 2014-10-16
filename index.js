@@ -1,10 +1,11 @@
 var coap            = require('coap');
 var rest            = require('./lib/rest_server');
 var iotcoap         = require('./lib/coap_server');
-var sqlite3         = require('sqlite3').verbose();
-var DBHandler       = require('./lib/db_handler');
+var DB_Factory      = require("./lib/db_factory");
 
-DBHandler.init();
+var db_factory = new DB_Factory();
+var database = db_factory.selectDB();
+database.init();
 
 module.exports =  iotcoap;
 module.exports.rest = rest;
