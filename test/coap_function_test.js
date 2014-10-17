@@ -73,7 +73,6 @@ describe('coap function test', function () {
         });
         delete_req.end();
 
-        console.log("waiting");
         const url2  = require('url').parse('coap://localhost/id/3/')
              ,getReqAfterDelete  = request(url2);
 
