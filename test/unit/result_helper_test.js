@@ -1,4 +1,4 @@
-var resultReturn = require('../lib/coap/coap_result_helper.js');
+var resultReturn = require('../../lib/coap/coap_result_helper.js');
 
 describe('query data status code test', function() {
 
