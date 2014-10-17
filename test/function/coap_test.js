@@ -1,7 +1,7 @@
-const coap = require('coap')
-    ,request = coap.request
-    ,bl   = require('bl')
-    ,_    = require('underscore');
+const coap     = require('coap')
+    ,request   = coap.request
+    ,bl        = require('bl')
+    ,_         = require('underscore');
 
 describe('coap function test', function () {
 
