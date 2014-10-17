@@ -31,7 +31,6 @@ describe('rest function test', function () {
             }
         };
 
-        console.log("waiting");
         var post_req = http.request(post_options, function(res) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
@@ -44,7 +43,6 @@ describe('rest function test', function () {
         http.get('http://localhost:8848/id/10', function (res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data)[0];
-                console.log(json);
                 if(json.sensors2 === 20){
                     done();
                 };
