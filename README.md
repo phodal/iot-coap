@@ -1,14 +1,13 @@
 
 [![Build Status](https://api.travis-ci.org/gmszone/iot-coap.png)](https://travis-ci.org/gmszone/iot-coap)
 
-
 [![NPM](https://nodei.co/npm/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
 [![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
-#物联网系统 CoAP版
+#CoAP物联网框架
 
-这是一个开源的最小物联网系统的CoAP版，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
+这是一个开源的最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
 
 ##主要依赖库
 
