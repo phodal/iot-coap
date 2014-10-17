@@ -43,6 +43,6 @@
   ],
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec 2>&1",
-    "jslint": "jslint 'lib/*.js' 'index.js' "
+    "jslint": "jslint 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' "
   }
 }
