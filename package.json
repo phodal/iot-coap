@@ -34,7 +34,7 @@
     "mocha": "~1.21.4",
     "timekeeper": "0.0.4",
     "sinon": "~1.7.3",
-    "zombie": "2.0.0-alpha31",
+    "zombie": "2.0.8",
     "jslint": "0.6.4"
   },
   "pre-commit": [
