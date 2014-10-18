@@ -14,10 +14,16 @@ describe('test url handler', function() {
         expect(result).to.eql('1');
     });
 
+    it('should return false when url empty', function() {
+        var url = "";
+        var result = URLHandler.url_sanity_check(url);
+        expect(result).to.eql(false);
+    });
+
     it('should return false when url no match', function() {
         var url = "id";
         var result = URLHandler.url_sanity_check(url);
-        expect(result).to.eql(false);
+        expect(result).to.eql(undefined);
     });
 
     it('should return true when url match', function() {

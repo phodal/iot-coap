@@ -33,18 +33,23 @@ describe('coap function test', function () {
         req.end();
     });
 
-    it('should return 12 when post a data and get data', function (done) {
+    it('should return 12 when post a data for get data step 1', function (done) {
         const request = coap.request
-            ,post_req = request({hostname: 'localhost', port: 5683, pathname: '', method: 'POST'});
+            , post_req = request({hostname: 'localhost', port: 5683, pathname: '', method: 'POST'});
 
         post_req.setHeader("Accept", "application/json");
-        post_req.setOption('Block2',  [new Buffer('5'),new Buffer("'must'"), new Buffer('23'), new Buffer('12')]);
+        post_req.setOption('Block2', [new Buffer('5'), new Buffer("'must'"), new Buffer('23'), new Buffer('12')]);
 
-        post_req.on('response', function(res) {
-            res.pipe(bl(function(err, data) {}));
+        post_req.on('response', function (res) {
+            res.pipe(bl(function (err, data) {
+            }));
         });
         post_req.end();
+        done();
+    });
 
+
+    it('should return 12 when post a data and get data step 2', function (done) {
         const url2 = require('url').parse('coap://localhost/id/5/')
             ,getReqAfterPost  = coap.request(url2);
 
