@@ -32,6 +32,41 @@ describe('coap function test', function () {
         req.end();
     });
 
+    it('should return Not Found this id error when get phodal/1', function (done) {
+        const url   = require('url').parse('coap://localhost/phodal/1/')
+            ,req  = request(url);
+
+        req.setOption('Block2',  new Buffer([0x2]));
+        req.setHeader("Accept", "application/json");
+        req.on('response', function(res) {
+            res.pipe(bl(function(err, data) {
+                var json = JSON.parse(data);
+                if(json.error === 'Not Found this id'){
+                    done();
+                }
+            }));
+        });
+        req.end();
+    });
+
+
+    it('should return Not Support error when get id/1', function (done) {
+        const url   = require('url').parse('coap://localhost/id/1/')
+            ,req  = request(url);
+
+        req.setOption('Block2',  new Buffer([0x2]));
+        req.setHeader("Accept", "application/xml");
+        req.on('response', function(res) {
+            res.pipe(bl(function(err, data) {
+                var json = JSON.parse(data);
+                if(json.error === 'accept not support'){
+                    done();
+                }
+            }));
+        });
+        req.end();
+    });
+
     it('should return 12 when post a data for get data step 1', function (done) {
         const request = coap.request
             , post_req = request({hostname: 'localhost', port: 5683, pathname: '', method: 'POST'});
