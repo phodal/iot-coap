@@ -7,7 +7,7 @@
 
 #CoAP物联网框架
 
-这是一个开源的最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
+最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
 
 ##主要依赖库
 
@@ -26,7 +26,7 @@
 
 ``注意``: 如果已经存在一个index.js文件，请将下面内容添加到文件末尾
 
-    const iotcoap         = require('iot-coap');
+    var iotcoap         = require('iot-coap');
 
     iotcoap.run();
     iotcoap.rest.run();
