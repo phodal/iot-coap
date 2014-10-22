@@ -38,8 +38,7 @@
   },
   "pre-commit": [
     "jslint",
-    "test",
-    "sendCoverage"
+    "test"
   ],
   "scripts": {
     "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' ",
