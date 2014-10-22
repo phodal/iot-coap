@@ -32,14 +32,17 @@
     "chai": "~1.9.1",
     "mocha": "~2.0.0",
     "sinon": "~1.7.3",
-    "jslint": "0.6.4"
+    "jslint": "0.6.4",
+    "istanbul": "0.3.2"
   },
   "pre-commit": [
+    "jslint",
     "test",
-    "jslint"
+    "cpfile"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec 2>&1",
-    "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' "
+    "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' ",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
+    "cpfile": "cp coverage/lcov.info ."
   }
 }
