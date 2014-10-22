@@ -5,7 +5,7 @@ var DB_Factory      = require("./lib/database/db_factory");
 
 var db_factory = new DB_Factory();
 var database = db_factory.selectDB();
-database.init();
+database.init({});
 
 module.exports =  iotcoap;
 module.exports.rest = rest;
