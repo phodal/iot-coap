@@ -41,7 +41,7 @@ describe('coap function test', function () {
         req.on('response', function(res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data);
-                if(json.error === 'Not Found this id'){
+                if(json.error === 'Not Found this id' || json.errno === 1 ){
                     done();
                 }
             }));
