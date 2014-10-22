@@ -38,11 +38,11 @@
   "pre-commit": [
     "jslint",
     "test",
-    "cpfile"
+    "sendCoverage"
   ],
   "scripts": {
     "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' ",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
-    "cpfile": "cp coverage/lcov.info ."
+    "sendCoverage": "CODECLIMATE_REPO_TOKEN=f644d2fb7f6f8cd7ea8ee6f24c33aa4b0ea9d4abd2288c55fda1025c9b5a2714 codeclimate < coverage/lcov.info"
   }
 }
