@@ -1,1 +1,8 @@
 iot.db
+.npm-debug.log
+doc
+examples
+license.txt
+.travis.yml
+.gitignore
+.jslint.conf

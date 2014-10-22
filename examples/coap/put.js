@@ -1,7 +1,7 @@
-const coap    = require('coap')
-      ,request  = coap.request
-      ,bl       = require('bl')
-      ,req = request({hostname: 'localhost',port:5683,pathname: '',method: 'PUT'});
+var coap    = require('coap');
+var request  = coap.request;
+var bl       = require('bl');
+var req = request({hostname: 'localhost',port:5683,pathname: '',method: 'PUT'});
 
 req.setHeader("Accept", "application/json");
 req.setOption('Block2',  [new Buffer('3'),new Buffer("'phodal'"), new Buffer('13'), new Buffer('12')]);
