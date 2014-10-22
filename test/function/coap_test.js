@@ -34,7 +34,7 @@ describe('coap function test', function () {
 
     it('should return Not Found this id error when get phodal/1', function (done) {
         const url   = require('url').parse('coap://localhost/phodal/1/')
-            ,req  = request(url);
+              ,req  = request(url);
 
         req.setOption('Block2',  new Buffer([0x2]));
         req.setHeader("Accept", "application/json");
@@ -48,7 +48,6 @@ describe('coap function test', function () {
         });
         req.end();
     });
-
 
     it('should return Not Support error when get id/1', function (done) {
         const url   = require('url').parse('coap://localhost/id/1/')
