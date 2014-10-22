@@ -1,5 +1,6 @@
 
 [![Build Status](https://api.travis-ci.org/gmszone/iot-coap.png)](https://travis-ci.org/gmszone/iot-coap)
+[![NPM](http://img.shields.io/npm/v/iot-coap.svg)](http://http://img.shields.io/npm/v/iot-coap.svg)
 
 [![NPM](https://nodei.co/npm/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
