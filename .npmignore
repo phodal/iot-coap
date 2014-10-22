@@ -6,3 +6,4 @@ license.txt
 .travis.yml
 .gitignore
 .jslint.conf
+coverage
