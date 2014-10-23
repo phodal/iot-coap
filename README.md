@@ -1,8 +1,8 @@
 
-[![Build Status](https://api.travis-ci.org/gmszone/iot-coap.png)](https://travis-ci.org/gmszone/iot-coap)
+[![Build Status](https://api.travis-ci.org/phodal/iot-coap.png)](https://travis-ci.org/phodal/iot-coap)
 [![Version](http://img.shields.io/npm/v/iot-coap.svg)](http://http://img.shields.io/npm/v/iot-coap.svg)
-[![Code Climate](https://codeclimate.com/github/gmszone/iot-coap/badges/gpa.svg)](https://codeclimate.com/github/gmszone/iot-coap)
-[![Test Coverage](https://codeclimate.com/github/gmszone/iot-coap/badges/coverage.svg)](https://codeclimate.com/github/gmszone/iot-coap)
+[![Code Climate](https://codeclimate.com/github/phodal/iot-coap/badges/gpa.svg)](https://codeclimate.com/github/phodal/iot-coap)
+[![Test Coverage](https://codeclimate.com/github/phodal/iot-coap/badges/coverage.svg)](https://codeclimate.com/github/phodal/iot-coap)
 
 [![NPM](https://nodei.co/npm/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
@@ -10,7 +10,7 @@
 
 #CoAP物联网框架
 
-最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/gmszone/iot][iot]
+最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/phodal/iot][iot]
 
 ##主要依赖库
 
@@ -147,7 +147,7 @@ QQ群：348100589
 
 © 2014 [Phodal Huang](http://www.phodal.com). This code is distributed under the MIT license.
 
-[iot]: https://github.com/gmszone/iot
+[iot]: https://github.com/phodal/iot
 [basic]: http://www.phodal.com/blog/use-constrained-application-protocol-in-internet-of-things/
 [hello]: http://www.phodal.com/blog/use-node-coap-create-a-coap-server/
 [returnjson]: http://www.phodal.com/blog/use-coap-build-internet-of-things-return-json/

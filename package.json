@@ -4,7 +4,7 @@
   "description": "IoT CoAP Framework, A Internet Of Things Framework of CoAP Protocol",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gmszone/iot-coap.git"
+    "url": "git@github.com:phodal/iot-coap.git"
   },
   "dependencies": {
     "coap": "0.8.0",
@@ -43,6 +43,6 @@
   "scripts": {
     "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' ",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
-    "sendCoverage": "CODECLIMATE_REPO_TOKEN=f644d2fb7f6f8cd7ea8ee6f24c33aa4b0ea9d4abd2288c55fda1025c9b5a2714 codeclimate < coverage/lcov.info"
+    "sendCoverage": "CODECLIMATE_REPO_TOKEN=8de471b0274afb32071817e5bd308e005d33e1b5227c267dc33c974d9027a932 codeclimate < coverage/lcov.info"
   }
 }
