@@ -3,6 +3,7 @@
 [![Version](http://img.shields.io/npm/v/iot-coap.svg)](http://http://img.shields.io/npm/v/iot-coap.svg)
 [![Code Climate](https://codeclimate.com/github/phodal/iot-coap/badges/gpa.svg)](https://codeclimate.com/github/phodal/iot-coap)
 [![Test Coverage](https://codeclimate.com/github/phodal/iot-coap/badges/coverage.svg)](https://codeclimate.com/github/phodal/iot-coap)
+[![Dependencies](https://david-dm.org/phodal/freerice.svg?style=flat)](https://david-dm.org/phodal/freerice.svg?style=flat0)
 
 [![NPM](https://nodei.co/npm/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
