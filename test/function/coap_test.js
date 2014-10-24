@@ -2,6 +2,9 @@ const coap     = require('coap')
     ,request   = coap.request
     ,bl        = require('bl');
 
+const iotcoap         = require('../../index');
+iotcoap.run();
+
 describe('coap function test', function () {
 
     before(function() {

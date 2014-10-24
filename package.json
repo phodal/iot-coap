@@ -31,7 +31,7 @@
     "pre-commit": "0.0.9",
     "chai": "~1.9.1",
     "mocha": "~2.0.0",
-    "sinon": "~1.7.3",
+    "sinon": "1.10.3",
     "jslint": "0.6.4",
     "istanbul": "0.3.2",
     "codeclimate-test-reporter": "0.0.4"

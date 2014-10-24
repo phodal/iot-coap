@@ -1,5 +1,9 @@
 var http           = require('http');
 var bl             = require('bl');
+var restify        = require('restify');
+
+const iotcoap         = require('../../index');
+iotcoap.rest.run();
 
 describe('rest function test', function () {
     before(function() {
@@ -45,10 +49,19 @@ describe('rest function test', function () {
                 var json = JSON.parse(data)[0];
                 if(json.sensors2 === 20){
                     done();
-                };
+                }
             }));
         });
     });
-
-
 });
+//
+//var client = restify.createJsonClient({
+//    url: 'http://127.0.0.1:8848/',
+//    version: '*'
+//});
+//
+//describe('User Login Test', function() {
+//    it('should return login success', function () {
+//        client.post();
+//    });
+//});
