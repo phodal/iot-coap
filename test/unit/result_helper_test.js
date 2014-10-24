@@ -12,6 +12,15 @@ describe('query data status code test', function() {
         expect(result).to.eql("4.04");
     });
 
+    it('should return 4.04 when result empty', function() {
+        var req = function(){};
+        var request = undefined;
+        req.url = "/id";
+        resultReturn.returnGETStatus(request, res, req);
+        var result = res.code;
+        expect(result).to.eql("4.04");
+    });
+
     it('should return 2.05 when result empty', function() {
         var request = "[{hello:'world'}]";
         resultReturn.returnGETStatus(request, res);
