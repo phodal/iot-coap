@@ -9,11 +9,11 @@
 
 [![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
-#CoAP物联网框架
+#CoAP IOT Framework
 
-最小物联网系统的CoAP框架，如果你还是一个初学者建议用HTTP版 [https://github.com/phodal/iot][iot]
+Mini IoT System with CoAP Protocol,  HTTP protocol to  [https://github.com/phodal/iot][iot]
 
-##主要依赖库
+##Thanks to
 
  - [RESTify](https://github.com/mcavage/node-restify)
  - [Node-CoAP](https://github.com/mcollina/node-coap)
@@ -26,18 +26,18 @@
     
     npm install iot-coap
 
-新建一个index.js
+new a file ``index.js``(新建index.js)
 
-``注意``: 如果已经存在一个index.js文件，请将下面内容添加到文件末尾
+``注意``: 如果已经存在一个index.js文件，请将下面内容添加到文件末尾(create index.js, and add)
 
     var iotcoap         = require('iot-coap');
 
     iotcoap.run();
     iotcoap.rest.run();
 
-``注意``:在db配置可以选择mongodb和sqlite3，替换所需要的数据库即可。
+``注意``:在db配置可以选择mongodb和sqlite3，替换所需要的数据库即可。(you can choice db on iot.js with 'sqlite' or 'mongodb')
 
-创建iot.js
+创建iot.js(Create iot.js)
 
     exports.config  = {
         "db_name": "iot.db",
@@ -76,7 +76,7 @@
         "rest_port": 8848
     };
 
-接着运行
+接着运行(run)
 
     node index.js
 
@@ -84,9 +84,9 @@
 
 ###Firefox
     
-1. 安装copper插件(下载地址:[https://addons.mozilla.org/en-US/firefox/addon/copper-270430/](https://addons.mozilla.org/en-US/firefox/addon/copper-270430/))
+1. 安装copper插件(下载地址:[https://addons.mozilla.org/en-US/firefox/addon/copper-270430/](https://addons.mozilla.org/en-US/firefox/addon/copper-270430/)) (install copper plugins)
 
-2. 选上Debug Contrl
+2. 选上Debug Contrl (choice Debug Control)
 
 3. 在Accept, Content-Format选application/json
 
@@ -98,19 +98,11 @@
     
     curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
 
-###在线测试
+##配置开发环境(Setup Dev)
 
-1. CoAP
-修改url为
 
-    coap://iot-coap.phodal.com
-
-2. RESTful
-修改url为
-
-    http://iot-coap.phodal.com:8896
-
-##配置开发环境
+   npm install
+ 
 
 在代码提交之前会跑测试、jslint语法检查，相关机制可以查看这篇文章[nodejs jslint](https://www.phodal.com/blog/nodejs-add-jslint-with-pre-commit/)
 
@@ -123,7 +115,7 @@
 
 QQ群：348100589
 
-##文档
+##文档(Documents on how to build)
 
 [CoAP与物联网系统][basic]
 
