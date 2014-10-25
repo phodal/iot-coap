@@ -1,6 +1,7 @@
 var http           = require('http');
 var bl             = require('bl');
 var restify        = require('restify');
+var _              = require('underscore');
 
 const iotcoap         = require('../../index');
 iotcoap.rest.run();
@@ -54,14 +55,19 @@ describe('rest function test', function () {
         });
     });
 });
-//
-//var client = restify.createJsonClient({
-//    url: 'http://127.0.0.1:8848/',
-//    version: '*'
-//});
-//
-//describe('User Login Test', function() {
-//    it('should return login success', function () {
-//        client.post();
-//    });
-//});
+
+var client = restify.createJsonClient({
+    url: 'http://localhost:8848/',
+    version: '*'
+});
+
+describe('Delete Data', function() {
+    it('should return empty after delete data', function (done) {
+        client.del('/id/10', function (err, req, res) {});
+        client.get('/id/10', function (err, req, res){
+            if(_.isEmpty(JSON.parse(res.body))){
+                done();
+            }
+        });
+    });
+});
