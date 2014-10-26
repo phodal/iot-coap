@@ -1,14 +1,26 @@
-const coap     = require('coap')
-    ,request   = coap.request
-    ,bl        = require('bl');
-
-const iotcoap         = require('../../index');
-iotcoap.run();
+const coap         = require('coap')
+    ,request       = coap.request
+    ,bl            = require('bl')
+    ,sinon         = require('sinon')
+    ,coapserver    = coap.createServer({})
+    ,DB_Factory    = require("../../lib/database/db_factory")
+    ,iotcoap       = require('../../index')
+    ,db_factory    = new DB_Factory();
 
 describe('coap function test', function () {
 
     before(function() {
 
+    });
+
+    it('should be call the db.init when start server', function(done){
+        iotcoap.run();
+        sinon.spy(db_factory, "selectDB");
+        expect(db_factory.selectDB.calledOnce).to.be.false;
+        var database = db_factory.selectDB();
+        sinon.spy(database, "init");
+        expect(database.init.calledOnce).to.be.false;
+        done();
     });
 
     it('should return 20 when coap get id = 1', function (done) {
@@ -113,4 +125,10 @@ describe('coap function test', function () {
         getReqAfterDelete.end();
     });
 
+    it('should be call the stop iot-coap server', function(done){
+        iotcoap.close();
+        sinon.spy(coapserver, "close");
+        expect(coapserver.close.calledOnce).to.be.false;
+        done();
+    });
 });
