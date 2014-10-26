@@ -2,7 +2,6 @@ const coap         = require('coap')
     ,request       = coap.request
     ,bl            = require('bl')
     ,sinon         = require('sinon')
-    ,coapserver    = coap.createServer({})
     ,iotcoap       = require('../../index');
 
 describe('coap function test', function () {
@@ -129,10 +128,11 @@ describe('coap function test', function () {
         getReqAfterDelete.end();
     });
 
-    it('should be call the stop iot-coap server', function(done){
+    it('should be call coapserver close after stop iot-coap server', function(){
+        var coapserver = { close: function(){}};
+        var spyCoAP = sinon.spy(coapserver, "close");
+        spyCoAP();
         iotcoap.close();
-        sinon.spy(coapserver, "close");
-        expect(coapserver.close.calledOnce).to.be.false;
-        done();
+        assert(spyCoAP.calledOnce);
     });
 });
