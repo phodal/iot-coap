@@ -1,9 +1,6 @@
 var DB             =require("../../lib/database/sqlite_helper")
     ,sqlite        = new DB()
-    ,_             = require("underscore")
-    ,DB_Factory    = require("../../lib/database/db_factory")
-    ,db_factory    = new DB_Factory()
-    ,sinon         = require('sinon');
+    ,_             = require("underscore");
 
 describe('Throw  Error Test', function() {
     it('should throw error on errorHandler', function () {
@@ -44,17 +41,5 @@ describe('DB Test', function() {
                 done();
             }
         })
-    });
-});
-
-describe('DB Call Test', function(){
-
-    it('should be call the db.init when start server', function(done){
-        sinon.spy(db_factory, "selectDB");
-        expect(db_factory.selectDB.calledOnce).to.be.false;
-        var database = db_factory.selectDB();
-        sinon.spy(database, "init");
-        expect(database.init.calledOnce).to.be.false;
-        done();
     });
 });
