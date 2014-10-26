@@ -3,26 +3,13 @@ const coap         = require('coap')
     ,bl            = require('bl')
     ,sinon         = require('sinon')
     ,coapserver    = coap.createServer({})
-    ,DB_Factory    = require("../../lib/database/db_factory")
-    ,iotcoap       = require('../../index')
-    ,db_factory    = new DB_Factory();
+    ,iotcoap       = require('../../index');
 
 describe('coap function test', function () {
 
     before(function() {
-
-    });
-
-    it('should be call the db.init when start server', function(done){
         iotcoap.run();
-        sinon.spy(db_factory, "selectDB");
-        expect(db_factory.selectDB.calledOnce).to.be.false;
-        var database = db_factory.selectDB();
-        sinon.spy(database, "init");
-        expect(database.init.calledOnce).to.be.false;
-        done();
     });
-
     it('should return 20 when coap get id = 1', function (done) {
         const url   = require('url').parse('coap://localhost/id/1/')
               ,req  = request(url);
@@ -86,6 +73,23 @@ describe('coap function test', function () {
 
         getReqAfterPost.setOption('Block2',  new Buffer([0x2]));
         getReqAfterPost.setHeader("Accept", "application/json");
+        getReqAfterPost.on('response', function(res) {
+            res.pipe(bl(function(err, data) {
+                var json = JSON.parse(data)[0];
+                if(json.sensors2 === 12){
+                    done();
+                }
+            }));
+        });
+        getReqAfterPost.end();
+    });
+
+    it('should return 12 when post a data and get data step 2', function (done) {
+        const url2 = require('url').parse('coap://localhost/id/5/')
+            ,getReqAfterPost  = coap.request(url2);
+
+        getReqAfterPost.setOption('Block2',  new Buffer([0x2]));
+        getReqAfterPost.setHeader("Accept", "application/xml");
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data)[0];
