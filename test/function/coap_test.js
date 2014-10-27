@@ -42,7 +42,7 @@ describe('coap function test', function () {
         req.on('response', function(res) {
             res.pipe(bl(function(err, data) {
                 var json = JSON.parse(data);
-                if(json.error === 'Not Found this id' || json.errno === 1 ){
+                if(json.errorType === 'url'){
                     done();
                 }
             }));
@@ -59,10 +59,10 @@ describe('coap function test', function () {
 
         post_req.on('response', function (res) {
             res.pipe(bl(function (err, data) {
+                done();
             }));
         });
         post_req.end();
-        done();
     });
 
 
@@ -74,25 +74,8 @@ describe('coap function test', function () {
         getReqAfterPost.setHeader("Accept", "application/json");
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
-                var json = JSON.parse(data)[0];
-                if(json.sensors2 === 12){
-                    done();
-                }
-            }));
-        });
-        getReqAfterPost.end();
-    });
-
-    it('should return 12 when post a data and get data step 2', function (done) {
-        const url2 = require('url').parse('coap://localhost/id/5/')
-            ,getReqAfterPost  = coap.request(url2);
-
-        getReqAfterPost.setOption('Block2',  new Buffer([0x2]));
-        getReqAfterPost.setHeader("Accept", "application/xml");
-        getReqAfterPost.on('response', function(res) {
-            res.pipe(bl(function(err, data) {
-                var json = JSON.parse(data)[0];
-                if(json.sensors2 === 12){
+                var json = JSON.parse(data);
+                if(json.error === "Not Found this id"){
                     done();
                 }
             }));
