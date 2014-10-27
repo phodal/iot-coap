@@ -74,8 +74,8 @@ describe('coap function test', function () {
         getReqAfterPost.setHeader("Accept", "application/json");
         getReqAfterPost.on('response', function(res) {
             res.pipe(bl(function(err, data) {
-                var json = JSON.parse(data);
-                if(json.error === "Not Found this id"){
+                var json = JSON.parse(data)[0];
+                if(json.sensors1 === 23){
                     done();
                 }
             }));
