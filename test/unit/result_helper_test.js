@@ -7,7 +7,7 @@ describe('query data status code test', function() {
 
     it('should return 4.04 when result empty', function() {
         var request = "[]";
-        resultReturn.returnGETStatus(request, res);
+        resultReturn.statusOfGet(request, res);
         var result = res.code;
         expect(result).to.eql("4.04");
     });
@@ -16,28 +16,28 @@ describe('query data status code test', function() {
         var req = function(){};
         var request = undefined;
         req.url = "/id";
-        resultReturn.returnGETStatus(request, res, req);
+        resultReturn.statusOfGet(request, res, req);
         var result = res.code;
         expect(result).to.eql("4.04");
     });
 
     it('should return 2.05 when result empty', function() {
         var request = "[{hello:'world'}]";
-        resultReturn.returnGETStatus(request, res);
+        resultReturn.statusOfGet(request, res);
         var result = res.code;
         expect(result).to.eql("2.05");
     });
 
     it('should return 2.05 when delete result', function() {
         var request = "";
-        resultReturn.returnDeleteStatus(request, res);
+        resultReturn.statusOfDelete(request, res);
         var result = res.code;
         expect(result).to.eql("2.05");
     });
 
     it('should return 2.05 when save result', function() {
         var request = "";
-        resultReturn.returnPOSTStatus(request, res);
+        resultReturn.statusOfPost(request, res);
         var result = res.code;
         expect(result).to.eql("2.05");
     });
