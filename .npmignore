@@ -3,6 +3,7 @@ iot.db
 doc
 examples
 license.txt
+lcov.info
 .travis.yml
 .gitignore
 .jslint.conf
