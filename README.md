@@ -10,6 +10,7 @@
 [![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
 #CoAP IOT Framework
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/phodal/iot-coap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Mini IoT System with CoAP Protocol,  HTTP protocol to  [https://github.com/phodal/iot][iot]
 
