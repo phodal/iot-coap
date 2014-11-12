@@ -1,7 +1,6 @@
 var URLHandler = require('../../lib/url_handler.js');
 
 describe('test url handler', function() {
-
     var url = '/id/1';
 
     it('should return \'id\' when get key from url', function() {
