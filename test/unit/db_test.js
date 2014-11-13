@@ -3,12 +3,13 @@ var DB             =require("../../lib/database/sqlite_helper")
     ,_             = require("underscore");
 
 describe('Throw  Error Test', function() {
+    sqlite.init();
+
     it('should throw error on errorHandler', function () {
         expect(sqlite.errorHandler()).to.throw();
     });
 
     it('should return init success', function (done) {
-        sqlite.init();
         sqlite.getData("/id/1", function (result) {
             if (JSON.parse(result)[0].id === 1) {
                 done();

@@ -3,3 +3,4 @@ coverage
 .idea
 .npm-debug.log
 lcov.info
+iot.db
