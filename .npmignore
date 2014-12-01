@@ -1,5 +1,6 @@
 iot.db
 .npm-debug.log
+npm-debug.log
 doc
 examples
 lcov.info

@@ -2,5 +2,6 @@ node_modules
 coverage
 .idea
 .npm-debug.log
+npm-debug.log
 lcov.info
 iot.db
