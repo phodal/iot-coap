@@ -9,10 +9,10 @@
   "dependencies": {
     "coap": "0.8.0",
     "bl": "~0.9.0",
-    "mongodb": "~2.0",
-    "sqlite3": "3.0.2",
+    "mongodb": "2.0.8",
+    "sqlite3": "3.0.4",
     "underscore": "1.7.0",
-    "restify": "2.8.2"
+    "restify": "2.8.3"
   },
   "keywords": [
     "coap",
@@ -28,10 +28,10 @@
   "license": "MIT",
   "devDependencies": {
     "pre-commit": "0.0.9",
-    "chai": "~1.9.1",
+    "chai": "1.10.0",
     "mocha": "~2.0.0",
-    "sinon": "1.10.3",
-    "jslint": "0.6.4",
+    "sinon": "1.12.1",
+    "jslint": "0.6.6",
     "istanbul": "0.3.2",
     "codeclimate-test-reporter": "0.0.4"
   },
