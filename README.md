@@ -9,6 +9,8 @@
 
 [![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
+已测试版本: Node 0.10.32, and 0.11.13
+
 #CoAP IOT Framework
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/phodal/iot-coap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
