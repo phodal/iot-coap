@@ -4,4 +4,3 @@ coverage
 .npm-debug.log
 npm-debug.log
 lcov.info
-iot.db
