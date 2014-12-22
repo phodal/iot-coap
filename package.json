@@ -41,7 +41,7 @@
   ],
   "scripts": {
     "jslint": "jslint --edition=latest 'lib/*.js' 'index.js' 'lib/coap/*.js' 'lib/database/*.js' 'lib/rest/*.js' ",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
+    "test": "rm iot.db;istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
     "sendCoverage": "CODECLIMATE_REPO_TOKEN=8de471b0274afb32071817e5bd308e005d33e1b5227c267dc33c974d9027a932 codeclimate < coverage/lcov.info"
   }
 }
