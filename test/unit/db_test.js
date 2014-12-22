@@ -3,6 +3,12 @@ var DB             =require("../../lib/database/sqlite_helper")
     ,_             = require("underscore");
 
 describe('Throw  Error Test', function() {
+    this.timeout(500);
+
+    it('should give more info', function(done) {
+        done();
+    });
+
 
     it('should throw error on errorHandler', function () {
         expect(sqlite.errorHandler()).to.throw();
