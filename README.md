@@ -9,14 +9,11 @@
 
 [![NPM](https://nodei.co/npm-dl/iot-coap.png)](https://nodei.co/npm/iot-coap/)
 
-已测试版本: Node 0.10.32, and 0.11.13
+Tested on: Node 0.10.32, and 0.11.13
 
 #CoAP IOT Framework
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/phodal/iot-coap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Mini IoT System with CoAP Protocol,  HTTP protocol to  [https://github.com/phodal/iot][iot]
-
-[物联网相关资料收集](https://github.com/phodal/collection-iot)
+Mini Internet of Things System with CoAP Protocol. HTTP protocol With RESTful to  [https://github.com/phodal/iot][iot]
 
 ##Thanks to
 
@@ -25,15 +22,13 @@ Mini IoT System with CoAP Protocol,  HTTP protocol to  [https://github.com/phoda
  - [Node Sqlite3](https://github.com/mapbox/node-sqlite3)
  - [MongoDB](https://github.com/mongodb/node-mongodb-native) 
 
-##install
+##Install
 
-``注意``：windows系统npm install失败时，需要自己建立一个C:\Documents and Settings\[USERNAME]\Application Data\npm 文件
+1.Install
     
     npm install iot-coap
 
-new a file ``index.js``(新建index.js)
-
-``注意``: 如果已经存在一个index.js文件，请将下面内容添加到文件末尾(create index.js, and add)
+2.Create ``index.js``
 
     var iotcoap         = require('iot-coap');
 
@@ -103,15 +98,22 @@ new a file ``index.js``(新建index.js)
     
     curl -H "Content-Type: application/json" -d '{"id":3, "value":"dream","sensors1":12,"sensors2":13}' http://localhost:8848
 
+
+[物联网相关资料收集](https://github.com/phodal/collection-iot)
+
 ##配置开发环境(Setup Dev)
 
 
-   npm install
+1.Clone
+
+    git@github.com:phodal/iot-coap.git
+    
+2.Install Dependencies
+    
+    npm install
  
 
-在代码提交之前会跑测试、jslint语法检查，相关机制可以查看这篇文章[nodejs jslint](https://www.phodal.com/blog/nodejs-add-jslint-with-pre-commit/)
-
-这时需要保证的是pre-commit能生效，因而需要有
+``注意``: 在代码提交之前会跑测试、jslint语法检查，相关机制可以查看这篇文章[nodejs jslint](https://www.phodal.com/blog/nodejs-add-jslint-with-pre-commit/)
 
 1. 安装有Nodejs的OS
 2. clone完代码后执行npm install
@@ -120,7 +122,7 @@ new a file ``index.js``(新建index.js)
 
 QQ群：348100589
 
-##文档(Documents on how to build)
+##文档
 
 [CoAP与物联网系统][basic]
 
