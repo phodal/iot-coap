@@ -1,6 +1,6 @@
 {
   "name": "iot-coap",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "IoT CoAP Framework, A Internet Of Things Framework of CoAP Protocol",
   "repository": {
     "type": "git",
