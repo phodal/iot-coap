@@ -11,11 +11,11 @@
 
 Tested on: Node 0.10.32, and 0.11.13
 
-[吊兰-MQTT协议,CoAP协议,WebSocket,物联网协议在线测试(Online test for IOT Protocol)](http://mqtt.phodal.com)
-
-#CoAP IOT Framework
+#CoAP协议 IOT Framework
 
 Mini Internet of Things System with CoAP Protocol. HTTP protocol With RESTful to  [https://github.com/phodal/iot][iot]
+
+[吊兰-MQTT协议,CoAP协议,WebSocket,物联网协议在线测试(Online test for IOT Protocol)](http://mqtt.phodal.com)
 
 ##Thanks to
 
@@ -143,7 +143,7 @@ QQ群：348100589
 
 ##IDE
 
-感谢[JetBrains](http://www.jetbrains.com)为我们提供了数据不限的WebStorm的License。
+感谢[JetBrains](http://www.jetbrains.com)为我们提供了数量不限的WebStorm的License。
 
 ## License
 
