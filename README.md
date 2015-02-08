@@ -17,6 +17,10 @@ Mini Internet of Things System with CoAP Protocol. HTTP protocol With RESTful to
 
 [吊兰-MQTT协议,CoAP协议,WebSocket,物联网协议在线测试(Online test for IOT Protocol)](http://mqtt.phodal.com)
 
+##提醒
+
+代码不再添加功能，仅维护(修复bug)，请使用[https://github.com/phodal/diaonan](https://github.com/phodal/diaonan)。
+
 ##Thanks to
 
  - [RESTify](https://github.com/mcavage/node-restify)
